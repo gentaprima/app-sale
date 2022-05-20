@@ -1,3 +1,11 @@
 .section_gapp{
     padding:10px 0px 100px !important;
 }
+
+.fs-5{
+    font-size: 16px;
+}
+
+.btn-style{
+    border: none;
+}

@@ -19,6 +19,7 @@ Route::get('/dashboard','DashboardController@index');
 Route::get('/dashboard/login','DashboardController@login');
 Route::get('/login','HomeController@login');
 Route::post('/auth','LoginController@index');
+Route::get('/profile','HomeController@profile');
 Route::get('/logout',function(){
     Session::flush();
     return redirect('/');

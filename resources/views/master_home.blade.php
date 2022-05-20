@@ -63,7 +63,7 @@ use Illuminate\Support\Facades\Session;
 								<li class="nav-item submenu dropdown">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Session::get('dataUsers')->full_name}}</a>
 									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="login.html">Profile</a></li>
+										<li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
 										<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 									</ul>
 								</li>

@@ -20,7 +20,7 @@
 	<!--================Login Box Area =================-->
 	<section class="login_box_area section_gapp">
 		<div class="container">
-			<div class="row">
+			<div class="row mt-5">
 				<!-- <div class="col-lg-6">
 					<div class="login_box_img">
 						<img class="img-fluid" src="{{asset('home/login.png')}}" alt="">
@@ -46,8 +46,8 @@
 									<label for="f-option2">Keep me logged in</label>
 								</div>
 							</div> -->
-							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">Log In</button>
+							<div class="col-md-12 form-group" style="margin-bottom: 100px;">
+								<button type="submit" value=" submit" class="primary-btn ">Log In</button>
 								<!-- <a href="#">Forgot Password?</a> -->
 							</div>
 						</form>
