@@ -1,112 +1,114 @@
-@extends('master_home')
+@extends('master_dashboard')
+
+@section('title','Profile')
 @section('content')
 <?php
 
 use Illuminate\Support\Facades\Session;
 
 ?>
-<!-- Start Banner Area -->
-<section class="banner-area organic-breadcrumb">
-	<div class="container">
-		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-			<div class="col-first">
-				<h1>Login</h1>
-				<nav class="d-flex align-items-center">
-					<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
-					<a href="#">Login</a>
-				</nav>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- End Banner Area -->
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Profile</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body " style="padding: 50px !important;">
+                    <?php if (Session::get('dataUsers')->photo == null) { ?>
+                        <img src="{{asset('user.png')}}" style="width: 100%;" alt="">
+                    <?php } else { ?>
+                        <img src="{{asset('uploads/profile')}}/{{Session::get('dataUsers')->photo}}" style="width: 150px;height:150px;border-radius: 50%;" alt="">
+                    <?php } ?>
+                    <center>
+                        <h2 class="mt-5">{{Session::get('dataUsers')->full_name}}</h2>
+                    </center>
 
-<!--================Login Box Area =================-->
-<section class="login_box_area section_gapp">
-	<div class="container">
-		<div class="row mt-5">
-			<div class="col-lg-4">
-				<div class="login_form_inner" style="padding: 50px !important;">
-					<?php if (Session::get('dataUsers')->photo == null) { ?>
-						<img src="{{asset('user.png')}}" style="width: 100%;" alt="">
-					<?php } else { ?>
-						<img src="{{asset('uploads/profile')}}/{{Session::get('dataUsers')->photo}}" style="width: 200px;height:200px;border-radius: 50%;" alt="">
-					<?php } ?>
-					<h2 class="mt-5">{{Session::get('dataUsers')->full_name}}</h2>
-				</div>
-			</div>
-			<div class="col-lg-8">
-				<div class="login_form_inner" style="text-align: left !important; padding:50px !important;">
-					<div class="row">
-						<div class="col-6">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body" style="padding: 50px !important;">
+                    <div class="row">
+                        <div class="col-6">
 
-							<p class=" fs-5">Email</p>
-						</div>
-						<div class="col-6">
-							<p class="font-weight-bold fs-5">{{Session::get('dataUsers')->email}}</p>
+                            <p class=" fs-5">Email</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="font-weight-bold fs-5">{{Session::get('dataUsers')->email}}</p>
 
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-6">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
 
-							<p class=" fs-5">No Telepon</p>
-						</div>
-						<div class="col-6">
-							<p class="font-weight-bold fs-5">{{Session::get('dataUsers')->phone_number}}</p>
+                            <p class=" fs-5">No Telepon</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="font-weight-bold fs-5">{{Session::get('dataUsers')->phone_number}}</p>
 
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-6">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
 
-							<p class=" fs-5">Alamat</p>
-						</div>
-						<div class="col-6">
-							<p class="font-weight-bold fs-5">{{Session::get('dataUsers')->alamat}}</p>
+                            <p class=" fs-5">Alamat</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="font-weight-bold fs-5">{{Session::get('dataUsers')->alamat}}</p>
 
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-6">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
 
-							<p class=" fs-5">Kecamatan</p>
-						</div>
-						<div class="col-6">
-							<p class="font-weight-bold fs-5">{{Session::get('dataUsers')->kecamatan}}</p>
+                            <p class=" fs-5">Kecamatan</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="font-weight-bold fs-5">{{Session::get('dataUsers')->kecamatan}}</p>
 
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-6">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
 
-							<p class=" fs-5">Kabupaten</p>
-						</div>
-						<div class="col-6">
-							<p class="font-weight-bold fs-5">{{Session::get('dataUsers')->kabupaten}}</p>
+                            <p class=" fs-5">Kabupaten</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="font-weight-bold fs-5">{{Session::get('dataUsers')->kabupaten}}</p>
 
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-6">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
 
-							<p class=" fs-5">Provinsi</p>
-						</div>
-						<div class="col-6">
-							<p class="font-weight-bold fs-5">{{Session::get('dataUsers')->provinsi}}</p>
+                            <p class=" fs-5">Provinsi</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="font-weight-bold fs-5">{{Session::get('dataUsers')->provinsi}}</p>
 
-						</div>
-					</div>
-					<div class="row mt-3">
-						<button type="button" data-toggle="modal" data-target="#modalProfile" class="primary-btn btn-style">Perbarui Data</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <button type="button" style="margin-left: 10px;" data-toggle="modal" data-target="#modalProfile" class="btn btn-outline-primary">Perbarui Data</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+
+</div>
 <div class="modal fade" id="modalProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-xl" style="width: 800px;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Perbarui Data</h5>
@@ -188,11 +190,12 @@ use Illuminate\Support\Facades\Session;
 					</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="submit" class="primary-btn btn-style">Simpan</button>
+				<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-outline-primary">Simpan</button>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
+
 @endsection

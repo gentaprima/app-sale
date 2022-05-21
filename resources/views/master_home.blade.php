@@ -191,6 +191,7 @@ use Illuminate\Support\Facades\Session;
 	<script src="{{asset('home/js/gmaps.min.js')}}"></script>
 	<script src="{{asset('home/js/main.js')}}"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="{{asset('dashboard_css/assets/js/file-upload.js')}}"></script>
 	<script>
 		let icon = document.getElementById('icon');
 		let title = document.getElementById('title');

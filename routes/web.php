@@ -32,6 +32,8 @@ Route::get('/dashboard/data-ekspedisi','ExpeditionController@index');
 Route::post('/dashboard/add-expedition','ExpeditionController@store');
 Route::post('/dashboard/update-expedition/{id}','ExpeditionController@update');
 Route::get('/dashboard/delete-expedition/{id}','ExpeditionController@destroy');
+Route::post('/update-profile/{id}','CustomersController@updateProfile');
+Route::get('/dashboard/profile','DashboardController@profile');
 
 Route::get('/logout',function(){
     Session::flush();
