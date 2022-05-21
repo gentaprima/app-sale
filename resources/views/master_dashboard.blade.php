@@ -8,18 +8,20 @@
   <title>@yield('title')</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{asset('dashboard_css/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
-  <link rel="stylesheet" href="{{asset('dsahboard_css/assets/vendors/css/vendor.bundle.base.css')}}">
+  <link rel="stylesheet" href="{{asset('dashboard_css/assets/vendors/css/vendor.bundle.base.css')}}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{{asset('dashboard_css/assets/vendors/jvectormap/jquery-jvectormap.css')}}">
   <link rel="stylesheet" href="{{asset('dashboard_css/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}">
   <link rel="stylesheet" href="{{asset('dashboard_css/assets/vendors/owl-carousel-2/owl.carousel.min.css')}}">
   <link rel="stylesheet" href="{{asset('dashboard_css/assets/vendors/owl-carousel-2/owl.theme.default.min.css')}}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <!-- endinject -->
   <!-- Layout styles -->
   <link rel="stylesheet" href="{{asset('dashboard_css/assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('dashboard_css/style.css')}}">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{{asset('dashboard_css/assets/images/favicon.png')}}" />
 </head>
@@ -51,25 +53,24 @@
         <li class="nav-item nav-category">
           <span class="nav-link">Navigation</span>
         </li>
-        <li class="nav-item menu-items">
-          <a class="nav-link" href="index.html">
+        <li class="nav-item menu-items {{ Request::is('dashboard') ? 'active' : '' }}">
+          <a class="nav-link " href="/dashboard">
             <span class="menu-icon">
               <i class="mdi mdi-home-variant"></i>
             </span>
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
-
-        <li class="nav-item menu-items">
-          <a class="nav-link" href="pages/forms/basic_elements.html">
+        <li class="nav-item menu-items {{ Request::is('dashboard/data-produk') ? 'active' : '' }}">
+          <a class="nav-link " href="/dashboard/data-produk">
             <span class="menu-icon">
               <i class="mdi mdi-library-books"></i>
             </span>
             <span class="menu-title">Data Produk</span>
           </a>
         </li>
-        <li class="nav-item menu-items">
-          <a class="nav-link" href="pages/tables/basic-table.html">
+        <li class="nav-item menu-items {{ Request::is('dashboard/data-pelanggan') ? 'active' : '' }}">
+          <a class="nav-link" href="/dashboard/data-pelanggan">
             <span class="menu-icon">
               <i class="mdi mdi-account-card-details"></i>
             </span>
@@ -77,15 +78,17 @@
           </a>
         </li>
         <li class="nav-item menu-items">
-          <a class="nav-link" href="pages/charts/chartjs.html">
-            <span class="menu-icon">
-              <i class="mdi mdi-chart-bar"></i>
-            </span>
-            <span class="menu-title">Data Penjualan</span>
+          <a href=".dashboard/" hidden="true">
+            <a class="nav-link" href="">
+              <span class="menu-icon">
+                <i class="mdi mdi-chart-bar"></i>
+              </span>
+              <span class="menu-title">Data Penjualan</span>
+            </a>
           </a>
         </li>
-        <li class="nav-item menu-items">
-          <a class="nav-link" href="pages/charts/chartjs.html">
+        <li class="nav-item menu-items {{ Request::is('dashboard/data-ekspedisi') ? 'active' : '' }}">
+          <a class="nav-link" href="/dashboard/data-ekspedisi">
             <span class="menu-icon">
               <i class="mdi mdi-truck"></i>
             </span>
@@ -133,13 +136,6 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
           </button>
-          <!-- <ul class="navbar-nav w-100">
-              <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Search products">
-                </form>
-              </li>
-            </ul> -->
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item dropdown border-left">
               <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
@@ -210,7 +206,7 @@
                   </div>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
+                <a href="/logout" class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
                     <div class="preview-icon bg-dark rounded-circle">
                       <i class="mdi mdi-logout text-danger"></i>
@@ -268,7 +264,9 @@
   <script src="{{asset('dashboard_css/assets/js/misc.js')}}"></script>
   <script src="{{asset('dashboard_css/assets/js/settings.js')}}"></script>
   <script src="{{asset('dashboard_css/assets/js/todolist.js')}}"></script>
+  <script src="{{asset('dashboard_css/assets/js/file-upload.js')}}"></script>
   <!-- endinject -->
+
   <!-- Custom js for this page -->
   <script src="{{asset('dashboard_css/assets/js/dashboard.js')}}"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

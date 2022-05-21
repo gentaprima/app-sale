@@ -21,9 +21,10 @@ class TblUsers extends Migration
             $table->string('phone_number');
             $table->string('password');
             $table->string('alamat')->nullable();
-            $table->string('kecamatan')->nullable()    ;
+            $table->string('kecamatan')->nullable();
             $table->string('kabupaten')->nullable();
             $table->string('provinsi')->nullable();
+            $table->string('photo')->nullable();
             $table->integer('role');
         });
     }
