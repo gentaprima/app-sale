@@ -1,14 +1,14 @@
 @extends('master_dashboard')
 
-@section('title','Data Ekspedisi')
+@section('title','Data Kriteria')
 @section('content')
 <div class="content-wrapper">
   <div class="page-header">
-    <h3 class="page-title">Data Ekspedisi</h3>
+    <h3 class="page-title">Data Kriteria</h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data Ekspedisi</li>
+        <li class="breadcrumb-item active" aria-current="page">Data Kriteria</li>
       </ol>
     </nav>
   </div>
@@ -22,22 +22,29 @@
               <thead>
                 <tr>
                   <th> # </th>
-                  <th> Ekspedisi </th>
+                  <th> Kriteria </th>
+                  <th> Jenis </th>
                   <th> Bobot </th>
                   <th> Aksi </th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($dataExpedisi as $row)
+                @foreach($dataKriteria as $row)
                 <tr>
                   <td>{{$loop->iteration}}</td>
-                  <td>{{$row->expedition}}</td>
+                  <td>{{$row->kriteria}}</td>
+                  <td>{{$row->jenis}}</td>
                   <td>{{$row->bobot}}</td>
                   </center>
                   <td>
                     <center>
+                      <span >
+                        <a href="/dashboard/data-subkriteria/{{$row->id}}" id="btn_verif"  class="btn btn-inverse-primary btn-rounded btn-icon " style="padding-top:12px !important;" data-toggle="tooltip" data-placement="top" title="Data Sub Kriteria">
+                          <i class="mdi mdi-table"></i>
+                        </a>
+                      </span>
                       <span data-toggle="modal" data-target="#modalForm">
-                        <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->expedition}}','{{$row->bobot}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Produk">
+                        <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->kriteria}}','{{$row->jenis}}','{{$row->bobot}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Produk">
                           <i class="mdi mdi-pencil-box-outline"></i>
                         </button>
                       </span>
@@ -74,42 +81,32 @@
         <form class="form" enctype="multipart/form-data" method="post" id="form" action="/add-product">
           @csrf
           <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Nama Ekspedisi</label>
+            <label for="inputPassword" class="col-sm-2 col-form-label">Kriteria</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="expedition" value="{{old('expedition')}}" name="expedition" placeholder="Nama Ekspedisi">
+              <input type="text" class="form-control" required id="kriteria" value="{{old('kriteria')}}" name="kriteria" placeholder="Kriteria">
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Nama Ekspedisi</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="bobot" value="{{old('bobot')}}" name="bobot" placeholder="Bobot">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Harga</label>
+              <div class="col-sm-10">
+                  <select  class="form-control" id="jenis" required value="{{old('jenis')}}" name="jenis">
+                      <option value="">-- Pilih Jenis --</option>
+                      <option value="Benefit">Benefit</option>
+                      <option value="Cost">Cost</option>
+                  </select>
+                </div>
             </div>
-          </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Deskripsi</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" required id="bobot" value="{{old('bobot')}}" name="bobot" placeholder="Bobot">
+                </div>
+            </div>
+          
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Simpan</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="modalPhoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" style="width: 800px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalTitle">Foto Produk</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="padding:100px;">
-        <center>
-          <img src="" style="width:80%;" alt="" id="imageProduct">
-        </center>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </form>
       </div>
     </div>
@@ -138,26 +135,26 @@
 
 <script>
   function addProduct() {
-    document.getElementById('expedition').value = '';
-    document.getElementById('modalTitle').innerHTML = 'Tambah Ekspedisi';
-    document.getElementById('form').action = '/dashboard/add-expedition';
-    document.getElementById('textPhoto').hidden = true;
+    document.getElementById('kriteria').value = '';
+    document.getElementById('bobot').value = '';
+    document.getElementById('jenis').value = '';
+    document.getElementById('modalTitle').innerHTML = 'Tambah Kriteria';
+    document.getElementById('form').action = '/dashboard/add-kriteria';
   }
   
-  function updateData(id,expedition,bobot){
-    document.getElementById('expedition').value = expedition;
+  function updateData(id,kriteria,jenis,bobot){
+    document.getElementById('kriteria').value = kriteria;
     document.getElementById('bobot').value = bobot;
-    document.getElementById('modalTitle').innerHTML = 'Perbarui Ekspedisi';
-    document.getElementById('form').action = `/dashboard/update-expedition/${id}`;
+    document.getElementById('jenis').value = jenis;
+    document.getElementById('modalTitle').innerHTML = 'Perbarui Kriteria';
+    document.getElementById('form').action = `/dashboard/update-kriteria/${id}`;
   }
 
   function deleteProduct(id){
-    document.getElementById('btnDelete').href = `/dashboard/delete-expedition/${id}`;
+    document.getElementById('btnDelete').href = `/dashboard/delete-kriteria/${id}`;
   }
 
-  function seePhoto(loc, image) {
-    document.getElementById('imageProduct').src = loc + '/' + image;
-  }
+ 
 </script>
 
 @endsection

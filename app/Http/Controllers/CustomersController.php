@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ModelUsers;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -210,5 +211,13 @@ class CustomersController extends Controller
         Session::put('dataUsers',$users);
         return redirect()->back();
 
+    }
+
+    public function getDataByEmail($email){
+        $data = ModelUsers::where('email',$email)->first();
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
     }
 }

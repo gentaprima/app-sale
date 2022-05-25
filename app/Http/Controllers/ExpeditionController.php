@@ -20,8 +20,10 @@ class ExpeditionController extends Controller
     public function store(Request $request){
         $validate = Validator::make($request->all(),[
             'expedition' => 'required',
+            'bobot' => 'required',
         ],[
             'expedition.required' => 'Nama Ekspedisi harus dilengkapi',
+            'bobot.required' => 'Bobot harus dilengkapi',
             
         ]);
 
@@ -34,7 +36,8 @@ class ExpeditionController extends Controller
         }
 
         $expedition = ModelExpedition::create([
-            'expedition'    => $request->expedition
+            'expedition'    => $request->expedition,
+            'bobot'    => $request->bobot
         ]);
         $expedition->save();
         Session::flash('message', 'Data Ekspedisi berhasil ditambahkan.'); 
@@ -47,8 +50,10 @@ class ExpeditionController extends Controller
     public function update(Request $request,$id){
         $validate = Validator::make($request->all(),[
             'expedition' => 'required',
+            'bobot' => 'required',
         ],[
             'expedition.required' => 'Nama Ekspedisi harus dilengkapi',
+            'bobot.required' => 'Bobot harus dilengkapi',
             
         ]);
 
@@ -62,6 +67,7 @@ class ExpeditionController extends Controller
 
         $expedition = ModelExpedition::find($id);
         $expedition->expedition = $request->expedition;
+        $expedition->bobot = $request->bobot;
         $expedition->save();
         Session::flash('message', 'Data Ekspedisi berhasil diperbarui.'); 
         Session::flash('icon', 'success'); 

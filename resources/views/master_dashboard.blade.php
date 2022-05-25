@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="{{asset('dashboard_css/style.css')}}">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{{asset('dashboard_css/assets/images/favicon.png')}}" />
+  <link rel="stylesheet" href="{{asset('dashboard_css/assets/vendors/select2/select2.min.css')}}">
 </head>
 
 <body>
@@ -77,16 +78,6 @@
             <span class="menu-title">Data Pelanggan</span>
           </a>
         </li>
-        <li class="nav-item menu-items">
-          <a href=".dashboard/" hidden="true">
-            <a class="nav-link" href="">
-              <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
-              </span>
-              <span class="menu-title">Data Penjualan</span>
-            </a>
-          </a>
-        </li>
         <li class="nav-item menu-items {{ Request::is('dashboard/data-ekspedisi') ? 'active' : '' }}">
           <a class="nav-link" href="/dashboard/data-ekspedisi">
             <span class="menu-icon">
@@ -96,6 +87,23 @@
           </a>
         </li>
         <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+            <span class="menu-icon">
+              <i class="mdi mdi-chart-bar"></i>
+            </span>
+            <span class="menu-title">Penjualan</span>
+            <i class="menu-arrow"></i>
+          </a>
+
+          <div class="collapse {{ Request::is('dashboard/data-transaction-member') ||  Request::is('dashboard/data-transaction-non-member') || Request::is('dashboard/add-transaction') ? 'show' : '' }}" id="auth">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/add-transaction') ? 'active' : '' }}" href="/dashboard/add-transaction"> Tambah Pembelian</a></li>
+              <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/data-transaction-non-member') ? 'active' : '' }}" href="/dashboard/data-transaction-non-member"">Data Penjualan (Non Member)</a></li>
+              <li class=" nav-item"> <a class="nav-link {{ Request::is('dashboard/data-transaction-member') ? 'active' : '' }}" href="/dashboard/data-transaction-member">Data Penjualan (Member)</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item menu-items">
           <a class="nav-link" href="pages/charts/chartjs.html">
             <span class="menu-icon">
               <i class="mdi mdi-table"></i>
@@ -103,149 +111,145 @@
             <span class="menu-title">Report</span>
           </a>
         </li>
-
-        <!-- <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <span class="menu-icon">
-                <i class="mdi mdi-security"></i>
-              </span>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+        <li class="nav-item menu-items">
+          <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-icon">
+              <i class="mdi mdi-calculator"></i>
+            </span>
+            <span class="menu-title">Metode</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse {{ Request::is('dashboard/data-kriteria') || Request::is('dashboard/data-penilaian') || Request::is('dashboard/data-perhitungan')  ? 'show' : '' }}" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/data-kriteria') ? 'active' : '' }}" href="/dashboard/data-kriteria"> Data Kriteria</a></li>
+              <li class=" nav-item"> <a class="nav-link {{ Request::is('dashboard/data-penilaian') ? 'active' : '' }}" href="/dashboard/data-penilaian">Data Penilaian</a></li>
+              <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/data-perhitungan') ? 'active' : '' }}" href="/dashboard/data-perhitungan">Perhitungan Pelanggan terbaik</a></li>
               </ul>
             </div>
-          </li> -->
-
+        </li>
       </ul>
     </nav>
     <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_navbar.html -->
-      <nav class="navbar p-0 fixed-top d-flex flex-row">
-        <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
-        </div>
-        <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-menu"></span>
-          </button>
-          <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown border-left">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="mdi mdi-bell"></i>
-                <span class="count bg-danger"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <h6 class="p-3 mb-0">Notifications</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-calendar text-success"></i>
+    <div class=" container-fluid page-body-wrapper">
+                  <!-- partial:partials/_navbar.html -->
+                  <nav class="navbar p-0 fixed-top d-flex flex-row">
+                    <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+                      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
                     </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Event today</p>
-                    <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-settings text-danger"></i>
+                    <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+                      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                        <span class="mdi mdi-menu"></span>
+                      </button>
+                      <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item dropdown border-left">
+                          <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                            <i class="mdi mdi-bell"></i>
+                            <span class="count bg-danger"></span>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                            <h6 class="p-3 mb-0">Notifications</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                              <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                  <i class="mdi mdi-calendar text-success"></i>
+                                </div>
+                              </div>
+                              <div class="preview-item-content">
+                                <p class="preview-subject mb-1">Event today</p>
+                                <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
+                              </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                              <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                  <i class="mdi mdi-settings text-danger"></i>
+                                </div>
+                              </div>
+                              <div class="preview-item-content">
+                                <p class="preview-subject mb-1">Settings</p>
+                                <p class="text-muted ellipsis mb-0"> Update dashboard </p>
+                              </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                              <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                  <i class="mdi mdi-link-variant text-warning"></i>
+                                </div>
+                              </div>
+                              <div class="preview-item-content">
+                                <p class="preview-subject mb-1">Launch Admin</p>
+                                <p class="text-muted ellipsis mb-0"> New admin wow! </p>
+                              </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <p class="p-3 mb-0 text-center">See all notifications</p>
+                          </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                            <div class="navbar-profile">
+                              <img class="img-xs rounded-circle" src="{{asset('dashboard_css/assets/images/faces/face15.jpg')}}" alt="">
+                              <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Session::get('dataUsers')->full_name }}</p>
+                              <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                            </div>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                            <h6 class="p-3 mb-0">Profile</h6>
+                            <div class="dropdown-divider"></div>
+                            <a href="/dashboard/profile" class="dropdown-item preview-item">
+                              <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                  <i class="mdi mdi-settings text-success"></i>
+                                </div>
+                              </div>
+                              <div class="preview-item-content">
+                                <p class="preview-subject mb-1">Settings</p>
+                              </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/logout" class="dropdown-item preview-item">
+                              <div class="preview-thumbnail">
+                                <div class="preview-icon bg-dark rounded-circle">
+                                  <i class="mdi mdi-logout text-danger"></i>
+                                </div>
+                              </div>
+                              <div class="preview-item-content">
+                                <p class="preview-subject mb-1">Log out</p>
+                              </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                          </div>
+                        </li>
+                      </ul>
+                      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="mdi mdi-format-line-spacing"></span>
+                      </button>
                     </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Settings</p>
-                    <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-link-variant text-warning"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Launch Admin</p>
-                    <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <p class="p-3 mb-0 text-center">See all notifications</p>
-              </div>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
-                <div class="navbar-profile">
-                  <img class="img-xs rounded-circle" src="{{asset('dashboard_css/assets/images/faces/face15.jpg')}}" alt="">
-                  <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ Session::get('dataUsers')->full_name }}</p>
-                  <i class="mdi mdi-menu-down d-none d-sm-block"></i>
-                </div>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                <h6 class="p-3 mb-0">Profile</h6>
-                <div class="dropdown-divider"></div>
-                <a href="/dashboard/profile" class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-settings text-success"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Settings</p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="/logout" class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="mdi mdi-logout text-danger"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Log out</p>
-                  </div>
-                </a>
-                <div class="dropdown-divider"></div>
-              </div>
-            </li>
-          </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="mdi mdi-format-line-spacing"></span>
-          </button>
-        </div>
-      </nav>
-      <!-- content -->
-      <div class="main-panel">
-        @if(Session::has('message'))
-        <p hidden="true" id="message">{{ Session::get('message') }}</p>
-        <p hidden="true" id="icon">{{ Session::get('icon') }}</p>
-        <p hidden="true" id="title">{{ Session::get('title') }}</p>
-        @endif
-        @yield('content')
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2022 <a href="#" target="_blank">App Sale</a>. All rights reserved.</span>
+                  </nav>
+                  <!-- content -->
+                  <div class="main-panel">
+                    @if(Session::has('message'))
+                    <p hidden="true" id="message">{{ Session::get('message') }}</p>
+                    <p hidden="true" id="icon">{{ Session::get('icon') }}</p>
+                    <p hidden="true" id="title">{{ Session::get('title') }}</p>
+                    @endif
+                    @yield('content')
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <footer class="footer">
+                      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2022 <a href="#" target="_blank">App Sale</a>. All rights reserved.</span>
 
+                      </div>
+                    </footer>
+                    <!-- partial -->
+                  </div>
+                  <!-- main-panel ends -->
           </div>
-        </footer>
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+          <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
@@ -270,6 +274,8 @@
   <!-- Custom js for this page -->
   <script src="{{asset('dashboard_css/assets/js/dashboard.js')}}"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="{{asset('dashboard_css/assets/vendors/select2/select2.min.js')}}"></script>
+  <script src="{{asset('dashboard_css/assets/js/select2.js')}}"></script>
   <script>
     let icon = document.getElementById('icon');
     let title = document.getElementById('title');
@@ -281,6 +287,12 @@
         icon: icon.innerHTML,
       });
     }
+  </script>
+  <script>
+    $(document).ready(function() {
+      $('.js-example-basic-single').select2();
+      $('.js-example-basic-singlee').select2();
+    });
   </script>
   <!-- End custom js for this page -->
 </body>

@@ -20,6 +20,22 @@ class ProductController extends Controller
         return view('dashboard/data-produk',$data);
     }
 
+    public function show($id){
+        $data = ModelProduct::find($id);
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
+    }
+
+    public function showAll(){
+        $data = ModelProduct::all();
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
+    }
+
     public function store(Request $request){
         $validate = Validator::make($request->all(),[
             'productName' => 'required',

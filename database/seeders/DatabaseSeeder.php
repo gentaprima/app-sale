@@ -35,5 +35,62 @@ class DatabaseSeeder extends Seeder
             ]
             ];
         DB::table('tbl_users')->insert($users);
+
+        $kriteria = [
+            [
+                'kriteria'  => "Volume Belanja",
+                'jenis'     => 'Benefit',
+                'bobot'     => '0.6'
+            ],
+            [
+                'kriteria'  => "Total Belanja",
+                'jenis'     => 'Benefit',
+                'bobot'     => '0.4'
+            ]
+
+        ];
+        DB::table('tbl_kriteria')->insert($kriteria);
+
+        $subKriteria = [
+            [
+                'id_kriteria'   => 1,
+                'description'   => '5 kali dalam sebulan',
+                'jumlah'   => 5,
+                'nilai_bobot'     => 15
+            ],
+            [
+                'id_kriteria'   => 1,
+                'description'   => '8 kali dalam sebulan',
+                'jumlah'   => 8,
+                'nilai_bobot'     => 35
+            ],
+            [
+                'id_kriteria'   => 1,
+                'description'   => 'Lebih dari 10 kali dalam sebulan',
+                'jumlah'   => 10,
+                'nilai_bobot'     => 50
+            ],
+            [
+                'id_kriteria'   => 2,
+                'description'   => 'Total belanja sampai 500.000 selama 1 bulan',
+                'jumlah'   => 500000,
+                'nilai_bobot'     => 15
+            ],
+            [
+                'id_kriteria'   => 2,
+                'description'   => 'Total belanja sampai 700.000 selama 1 bulan',
+                'jumlah'   => 700000,
+                'nilai_bobot'     => 35
+            ],
+            [
+                'id_kriteria'   => 2,
+                'description'   => 'Total belanja lebih dari 1.000.000 selama 1 bulan',
+                'jumlah'   => 1000000,
+                'nilai_bobot'     => 50
+            ],
+        ];
+
+        DB::table('tbl_subkriteria')->insert($subKriteria);
+
     }
 }
