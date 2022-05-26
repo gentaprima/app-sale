@@ -57,6 +57,11 @@ Route::get('/dashboard/delete-subkriteria/{id}','SubCriteriaController@destroy')
 Route::get('/dashboard/data-penilaian','DashboardController@dataPenilaian');
 Route::get('/dashboard/data-perhitungan','DashboardController@dataPerhitungan');
 Route::get('/dashboard/calculate-normalisasi','NormalisasiController@calcalulateNormalisasi');
+Route::get('/dashboard/test-sendemail','DashboardController@testSendEmail');
+Route::get('/dashboard/print-faktur-member/{id}','DashboardController@printFakturMember');
+Route::get('/dashboard/print-faktur-non-member/{id}','DashboardController@printFakturNonMember');
+Route::get('/data-transaksi','HomeController@dataTransaction');
+Route::get('/data-voucher','HomeController@dataVoucher');
 
 Route::get('/logout',function(){
     Session::flush();

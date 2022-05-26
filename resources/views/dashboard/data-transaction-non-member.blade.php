@@ -45,15 +45,15 @@
                         </button>
                       </span>
                       <span data-toggle="modal" data-target="#modalFormm">
-                        <button id="btn_verif"  type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Cetak Faktur">
+                        <a href="/dashboard/print-faktur-non-member/{{$row->id_order}}" target="_blank" id="btn_verif" style="padding-top:12px;" class="btn btn-inverse-success btn-rounded btn-icon">
                           <i class="mdi mdi-printer"></i>
-                        </button>
+                        </a>
                       </span>
-                      <span data-toggle="modal" data-target="#modalDelete">
+                      <!-- <span data-toggle="modal" data-target="#modalDelete">
                         <button type="button" onclick="" class="btn btn-inverse-danger btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Delete Data">
                           <i class="mdi mdi-delete"></i>
                         </button>
-                      </span>
+                      </span> -->
                     </center>
                   </td>
                 </tr>

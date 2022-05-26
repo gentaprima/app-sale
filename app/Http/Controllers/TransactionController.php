@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendEmail;
 use App\Models\ModelAlternatif;
 use App\Models\ModelSubkriteria;
 use App\Models\ModelUsers;
 use App\Models\ModelVoucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class TransactionController extends Controller
@@ -51,7 +54,36 @@ class TransactionController extends Controller
                 array_push($dataTransaction, $data);
             }
 
-            DB::table('tbl_transaction_non_member')->insert($dataTransaction);
+            // DB::table('tbl_transaction_non_member')->insert($dataTransaction);
+            $getDataCustomers = ModelUsers::where('email', $request->email)->first();
+            $dataTransaction = DB::table('tbl_transaction_non_member')
+                                    ->select('tbl_transaction_non_member.id_order','tbl_transaction_non_member.email','tbl_transaction_non_member.full_name','tbl_transaction_non_member.subtotal','tbl_transaction_non_member.date')
+                                    ->where('email','=',$request->email)
+                                    ->whereMonth('date','=',date('m'))
+                                    ->groupBy('id_order', 'full_name','email','kecamatan','subtotal', 'date')
+                                    ->get();
+            $totalBelanja = 0;
+            for($i = 0;$i<count($dataTransaction);$i++){
+                $totalBelanja+=$dataTransaction[$i]->subtotal;
+            }
+
+            // dd($dataTransaction);
+            if($totalBelanja >= 500000){
+                $users = ModelUsers::create([
+                    'full_name' => $request->fullName,
+                    'id_member' => 'M-'.random_int(100000, 999999),
+                    'password' => Hash::make('1234'),
+                    'role' => 0,
+                    'phone_number'  => $request->phoneNumber,
+                    'email'  => $request->email,
+                    'alamat'  => $request->alamat,
+                    'kecamatan'  => $request->kecamatan,
+                    'kabupaten'  => $request->kabupaten,
+                    'provinsi'  => $request->provinsi,
+                ]);
+                $users->save();
+                Mail::to($request->email)->send(New SendEmail($request));
+            }
         } else {
             $getDataCustomers = ModelUsers::where('email', $request->email)->first();
             $idOrder = 'ORD-' . random_int(100000, 999999);
@@ -80,7 +112,7 @@ class TransactionController extends Controller
                 $discount = '100000';
                 
             }else if(intval($grandTotal) >= 650000){
-                $descDiscout += 'Potongan Belanja sebesar Rp 30.000';
+                $descDiscout = 'Potongan Belanja sebesar Rp 30.000';
                 $discount = '30000';
             }else if(intval($grandTotal) >= 250000){
                 $descDiscout = 'Potongan Belanja sebesar Rp 10.000';

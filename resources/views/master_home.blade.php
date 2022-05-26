@@ -58,12 +58,14 @@ use Illuminate\Support\Facades\Session;
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item {{ Request::is('/') ? 'active' : '' }}"><a class="nav-link" href="/">Beranda</a></li>
 							<?php if (Session::get('login') == true) {  ?>
-								<li class="nav-item submenu dropdown">
+								<li class="nav-item {{ Request::is('data-transaksi') ? 'active' : '' }}"><a class="nav-link" href="/data-transaksi">Riwayat Transaksi</a></li>
+								<li class="nav-item {{ Request::is('data-voucher') ? 'active' : '' }}"><a class="nav-link" href="/data-voucher">Voucher</a></li>
+								<li class="nav-item submenu dropdown {{ Request::is('profile') ? 'active' : '' }}">
 									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Session::get('dataUsers')->full_name}}</a>
 									<ul class="dropdown-menu">
-										<li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+										<li class="nav-item "><a class="nav-link " href="/profile">Profile</a></li>
 										<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 									</ul>
 								</li>
