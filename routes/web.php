@@ -62,6 +62,8 @@ Route::get('/dashboard/print-faktur-member/{id}','DashboardController@printFaktu
 Route::get('/dashboard/print-faktur-non-member/{id}','DashboardController@printFakturNonMember');
 Route::get('/data-transaksi','HomeController@dataTransaction');
 Route::get('/data-voucher','HomeController@dataVoucher');
+Route::get('/dashboard/report-member','DashboardController@report');
+Route::get('/dashboard/report-non-member','DashboardController@reportNonMember');
 
 Route::get('/logout',function(){
     Session::flush();

@@ -24,6 +24,7 @@
                   <th> Nama Lengkap </th>
                   <th> Volume Belanja </th>
                   <th> Total Belanja </th>
+                  <th> Ekspedisi </th>
                   <!-- <th> Aksi </th> -->
                 </tr>
               </thead>
@@ -34,6 +35,7 @@
                   <td>{{$row->full_name}}</td>
                   <td>{{$row->volume_belanja}}</td>
                   <td>{{$row->total_belanja}}</td>
+                  <td>{{$row->ekspedisi}}</td>
 
                 </tr>
                 @endforeach

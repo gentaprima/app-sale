@@ -40,12 +40,17 @@ class DatabaseSeeder extends Seeder
             [
                 'kriteria'  => "Volume Belanja",
                 'jenis'     => 'Benefit',
-                'bobot'     => '0.6'
+                'bobot'     => '0.4'
             ],
             [
                 'kriteria'  => "Total Belanja",
                 'jenis'     => 'Benefit',
                 'bobot'     => '0.4'
+            ],
+            [
+                'kriteria'  => "Ekspedisi",
+                'jenis'     => 'Cost',
+                'bobot'     => '0.2'
             ]
 
         ];
@@ -86,6 +91,24 @@ class DatabaseSeeder extends Seeder
                 'id_kriteria'   => 2,
                 'description'   => 'Total belanja lebih dari 1.000.000 selama 1 bulan',
                 'jumlah'   => 1000000,
+                'nilai_bobot'     => 50
+            ],
+            [
+                'id_kriteria'   => 3,
+                'description'   => 'Pengiriman Reguler (JNT,JNE,Sicepat)',
+                'jumlah'   => 0,
+                'nilai_bobot'     => 15
+            ],
+            [
+                'id_kriteria'   => 3,
+                'description'   => 'Pengiriman Sameday (Gojek,Grab)',
+                'jumlah'   => 1,
+                'nilai_bobot'     => 35
+            ],
+            [
+                'id_kriteria'   => 3,
+                'description'   => 'Ambil ditoko',
+                'jumlah'   => 2,
                 'nilai_bobot'     => 50
             ],
         ];

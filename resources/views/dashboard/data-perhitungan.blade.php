@@ -26,6 +26,7 @@
                   <th> Email </th>
                   <th> Volume Belanja </th>
                   <th> Total Belanja </th>
+                  <th> Kkspedisi </th>
                   <th> Hasil </th>
                   <!-- <th> Aksi </th> -->
                 </tr>
@@ -38,13 +39,16 @@
                   <td>{{$row->email}}</td>
                   <td>{{$row->n_volume_belanja}}</td>
                   <td>{{$row->n_total_belanja}}</td>
+                  <td>{{$row->n_ekspedisi}}</td>
                   <td>{{$row->n_total}}</td>
 
                 </tr>
                 @endforeach
               </tbody>
             </table>
+            @php if(count($dataPerhitungan) > 0){ @endphp
             <div class="alert alert-success mt-5">Berdasarkan perhitungan menggunakan metode Waspas, Pelanggan terbaik jatuh pada : <span class="font-weight-bold">{{$dataPerhitungan[0]->full_name}}</span></div>
+            @php } @endphp
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ class SubCriteriaController extends Controller
     public function store(Request $request){
         $criteria = ModelSubkriteria::create([
             'description'  => $request->subKriteria,
-            'nilai_sub'     => $request->nilaiSub,
+            'nilai_bobot'     => $request->nilaiSub,
             'id_kriteria'   => $request->idKriteria
         ]);
 
@@ -26,7 +26,7 @@ class SubCriteriaController extends Controller
     public function update(Request $request,$id){
         $criteria = ModelSubkriteria::find($id);
         $criteria->description = $request->subKriteria;
-        $criteria->nilai_sub = $request->nilaiSub;
+        $criteria->nilai_bobot = $request->nilaiSub;
         $criteria->save();
         Session::flash('message', 'Data Subkriteria berhasil diperbarui.'); 
         Session::flash('icon', 'success'); 

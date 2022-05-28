@@ -42,10 +42,10 @@ class ProductController extends Controller
             'description'   => 'required',
             'price' => 'required|numeric',
             'image' => 'required'
-        ],[
+        ],[ 
             'productName.required' => 'Nama Produk harus dilengkapi',
             'description.required' => 'Deskripsi harus dilengkapi',
-            'price.required' => 'Harga harus dilengkapi',
+            'price.required' => 'H  arga harus dilengkapi',
             'price.numeric' => 'Harga harus angka',
             'image.required' => 'Foto harus dilengkapi',
             

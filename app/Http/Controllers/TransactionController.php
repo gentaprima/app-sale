@@ -54,7 +54,7 @@ class TransactionController extends Controller
                 array_push($dataTransaction, $data);
             }
 
-            // DB::table('tbl_transaction_non_member')->insert($dataTransaction);
+            DB::table('tbl_transaction_non_member')->insert($dataTransaction);
             $getDataCustomers = ModelUsers::where('email', $request->email)->first();
             $dataTransaction = DB::table('tbl_transaction_non_member')
                                     ->select('tbl_transaction_non_member.id_order','tbl_transaction_non_member.email','tbl_transaction_non_member.full_name','tbl_transaction_non_member.subtotal','tbl_transaction_non_member.date')
@@ -132,7 +132,7 @@ class TransactionController extends Controller
 
             // proses tambah nilai alternatif (member)
             $dataTransaction = DB::table('tbl_transaction_member')
-                                ->select('tbl_transaction_member.id_order', 'tbl_users.full_name', 'tbl_transaction_member.subtotal', 'date')
+                                ->select('tbl_transaction_member.id_order', 'tbl_users.full_name', 'tbl_transaction_member.subtotal', 'date','id_expedition')
                                 ->leftJoin('tbl_users', 'tbl_transaction_member.id_users', '=', 'tbl_users.id')
                                 ->leftJoin('tbl_product', 'tbl_transaction_member.id_product', '=', 'tbl_product.id')
                                 ->leftJoin('tbl_expedition', 'tbl_transaction_member.id_expedition', '=', 'tbl_expedition.id')
@@ -141,11 +141,42 @@ class TransactionController extends Controller
                                 ->groupBy('id_order', 'full_name', 'subtotal', 'date')
                                 ->orderBy('tbl_transaction_member.id','desc')
                                 ->get();
+
             $totalBelanja = 0;
             for($i = 0;$i<count($dataTransaction);$i++){
                 $totalBelanja+=$dataTransaction[$i]->subtotal;
             }
-            if($totalBelanja >= 500000 && count($dataTransaction) >= 2){
+            $dataAmbilDiToko = DB::table('tbl_transaction_member')
+                                    ->where('id_expedition','=',9)
+                                    ->where('id_users','=',$getDataCustomers['id'])
+                                    ->whereMonth('date',date('m'))
+                                    ->groupBy('id_order')
+                                    ->orderBy('tbl_transaction_member.id','desc')
+                                    ->get();
+            $dataSameDay = DB::table('tbl_transaction_member')
+                                ->where('id_expedition','=',8)
+                                ->where('id_users','=',$getDataCustomers['id'])
+                                ->whereMonth('date',date('m'))
+                                ->groupBy('id_order')
+                                ->orderBy('tbl_transaction_member.id','desc')
+                                ->get();
+
+            $dataReguler = DB::table('tbl_transaction_member')
+                                ->where('id_expedition','=',7)
+                                ->where('id_users','=',$getDataCustomers['id'])
+                                ->whereMonth('date',date('m'))
+                                ->groupBy('id_order')
+                                ->orderBy('tbl_transaction_member.id','desc')
+                                ->get();
+
+            $expedisi = [
+                '7' => count($dataReguler),
+                '8' => count($dataSameDay),
+                '9' => count($dataAmbilDiToko)
+            ];
+            $maxs = array_keys($expedisi, max($expedisi));
+
+            if($totalBelanja >= 500000 && count($dataTransaction) >= 5 ){
                 //masuk kriteria perhitungan pelanggan terbaik
                 $subKriteriaTotalBelanja = DB::table('tbl_subkriteria')
                                 ->where('jumlah','<=',$totalBelanja)
@@ -164,6 +195,7 @@ class TransactionController extends Controller
                     'id_users' => $getDataCustomers['id'],
                     'volume_belanja' => $subKriteriaVolumeBelanja->id,
                     'total_belanja' => $subKriteriaTotalBelanja->id,
+                    'ekspedisi' => $maxs[0],
                     'date'      => date('Y-m-d')
                 ];
                 if($cekNilaiAlternatifCustomers != null){

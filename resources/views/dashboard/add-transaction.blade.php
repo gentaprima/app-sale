@@ -154,7 +154,7 @@
                                 <select name="idExpedition" required id="" class="form-control">
                                     <option value="">-- Pilih Expedisi --</option>
                                     @foreach($dataExpedition as $row)
-                                    <option value="{{$row->id}}">{{$row->expedition}}</option>
+                                    <option value="{{$row->id}}">{{$row->description}}</option>
                                     @endforeach
                                 </select>
                             </div>

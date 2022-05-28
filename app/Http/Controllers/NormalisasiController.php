@@ -13,16 +13,18 @@ class NormalisasiController extends Controller
 {
     public function calcalulateNormalisasi(){
         $dataNilaiAlternatif = DB::table('tbl_nilai_alternatif')
-                                ->select('tbl_nilai_alternatif.id','SB1.nilai_bobot AS volume_belanja','SB2.nilai_bobot AS total_belanja')
+                                ->select('tbl_nilai_alternatif.id','SB1.nilai_bobot AS volume_belanja','SB2.nilai_bobot AS total_belanja','SB3.nilai_bobot AS ekspedisi')
                                 ->leftJoin('tbl_users','tbl_nilai_alternatif.id_users','=','tbl_users.id')
                                 ->leftJoin('tbl_subkriteria AS SB1','tbl_nilai_alternatif.volume_belanja','=','SB1.id')
                                 ->leftJoin('tbl_subkriteria AS SB2','tbl_nilai_alternatif.total_belanja','=','SB2.id')
+                                ->leftJoin('tbl_subkriteria AS SB3','tbl_nilai_alternatif.ekspedisi','=','SB3.id')
                                 ->get();
                                 
         if($dataNilaiAlternatif != null){
             $dataKriteria = ModelKriteria::all();
             $dataKriteriaCost = ModelKriteria::where('jenis','Cost')->get();
             $dataKriteriaBenefit = ModelKriteria::where('jenis','Benefit')->get();
+
 
             $hasilMaxDariSetiapAlternatif = [];
             $hasilMinDariSetiapAlternatif = [];
@@ -57,23 +59,23 @@ class NormalisasiController extends Controller
                 ));
             }
 
-
             foreach ($dataNilaiAlternatif as $n) {
                 $c = [];
-                $bobotKriteria = $hasilMaxDariSetiapAlternatif[0]['kriteria'];
                 // mencari nilai normalisasi (benefit)
                 foreach ($hasilMaxDariSetiapAlternatif as $hmxdsk) {
+                    $bobotKriteriaMax = $hmxdsk['kriteria'];
                     array_push($c, array(
                         'kriteria' => $hmxdsk['kriteria'],
-                        'normalisasi' => $n->$bobotKriteria / $hmxdsk['hasil'],
+                        'normalisasi' => $n->$bobotKriteriaMax / $hmxdsk['hasil'],
                     ));
                 }
 
                 // mencari nilai normalisasi (cost)
                 foreach ($hasilMinDariSetiapAlternatif as $hmndsk) {
+                    $bobotKriteriaMin = $hmndsk['kriteria'];
                     array_push($c, [
                         'kriteria' => $hmndsk['kriteria'],
-                        'normalisasi'    => $hmndsk['hasil'] / $n->$bobotKriteria
+                        'normalisasi'    => $hmndsk['hasil'] / $n->$bobotKriteriaMin
                     ]);
                 }
                 array_push($nilaiHasilNormalisasi, array(
@@ -89,18 +91,23 @@ class NormalisasiController extends Controller
                 // total belanja
                 $nTotalBelanja = $n['hasil_normalisasi'][1]['normalisasi'] * $dataKriteria[1]->bobot;
                 $pangkatTotalBelanja = pow($n['hasil_normalisasi'][1]['normalisasi'], $dataKriteria[1]->bobot);
+                // ekspedisi
+                $nEkspedisi = $n['hasil_normalisasi'][1]['normalisasi'] * $dataKriteria[2]->bobot;
+                $pangkatEkspedisi = pow($n['hasil_normalisasi'][2]['normalisasi'], $dataKriteria[2]->bobot);
 
-                $totalNilaiAlternatif = 0.5 * ($nVolumeBelanja + $nTotalBelanja);
-                $totalNilaiPangkat = 0.5 * ($pangkatVolumeBelanja * $pangkatTotalBelanja);
+                $totalNilaiAlternatif = 0.5 * ($nVolumeBelanja + $nTotalBelanja + $nEkspedisi);
+                $totalNilaiPangkat = 0.5 * ($pangkatVolumeBelanja * $pangkatTotalBelanja + $pangkatEkspedisi);
 
                 array_push($dataAdd,[
                     'id_nilai_alternatif' => $n['id_nilai_alternatif'],
                     'n_volume_belanja'      => $n['hasil_normalisasi'][0]['normalisasi'],
                     'n_total_belanja'      => $n['hasil_normalisasi'][1]['normalisasi'],
+                    'n_ekspedisi'      => $n['hasil_normalisasi'][2]['normalisasi'],
                     'n_total'       => $totalNilaiPangkat + $totalNilaiAlternatif,
                     'date' => date('Y-m-d')
                 ]);
             }
+            
 
             ModelNormalisasi::truncate();
             DB::table('tbl_normalisasi')->insert($dataAdd);

@@ -71,13 +71,6 @@
             </tr>
             @php $subtotal += $row->total; @endphp
             @endforeach
-
-            <tr>
-                <td colspan='4'>
-                    <div style='text-align:right'>Total</div>
-                </td>
-                <td style='text-align:right'>Rp @php echo number_format($subtotal, 2, ".", ","); @endphp</td>
-            </tr>
             <tr>
                 <td colspan='4'>
                     <div style='text-align:right'>Diskon</div>
@@ -86,10 +79,12 @@
             </tr>
             <tr>
                 <td colspan='4'>
-                    <div style='text-align:right'>Subtotal</div>
+                    <div style='text-align:right'>Total</div>
                 </td>
-                <td style='text-align:right'>Rp2.460.000,00</td>
+                <td style='text-align:right'>Rp @php echo number_format($subtotal, 2, ".", ","); @endphp</td>
             </tr>
+           
+           
         </table>
 
         <table style='width:650; font-size:7pt;' cellspacing='2'>

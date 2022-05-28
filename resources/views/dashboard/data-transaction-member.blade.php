@@ -17,7 +17,7 @@
       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-striped dataTable js-basic-example mt-3">
               <thead>
                 <tr>
                   <th> # </th>

@@ -59,6 +59,7 @@
                 @endforeach
               </tbody>
             </table>
+            <div class="alert alert-warning mt-5"><span class="font-weight-bold">Pemberitahuan!</span> total nilai bobot tidak boleh melebihi 1</div>
           </div>
         </div>
       </div>
@@ -87,7 +88,7 @@
             </div>
           </div>
           <div class="form-group row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Harga</label>
+              <label for="inputPassword" class="col-sm-2 col-form-label">Jenis</label>
               <div class="col-sm-10">
                   <select  class="form-control" id="jenis" required value="{{old('jenis')}}" name="jenis">
                       <option value="">-- Pilih Jenis --</option>
@@ -97,7 +98,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Deskripsi</label>
+                <label for="inputPassword" class="col-sm-2 col-form-label">Bobot</label>
                 <div class="col-sm-10">
                 <input type="text" class="form-control" required id="bobot" value="{{old('bobot')}}" name="bobot" placeholder="Bobot">
                 </div>

@@ -18,6 +18,7 @@ class TblNormalisasi extends Migration
             $table->unsignedBigInteger('id_nilai_alternatif')->unsigned();
             $table->double('n_volume_belanja');
             $table->double('n_total_belanja');
+            $table->double('n_ekspedisi');
             $table->double('n_total');
             $table->date('date');
             $table->foreign('id_nilai_alternatif')->references('id')->on('tbl_nilai_alternatif')->onDelete('cascade');

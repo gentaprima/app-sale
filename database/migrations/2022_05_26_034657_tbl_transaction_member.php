@@ -26,7 +26,7 @@ class TblTransactionMember extends Migration
             $table->date('date');
             $table->foreign('id_users')->references('id')->on('tbl_users')->onDelete('cascade');
             $table->foreign('id_product')->references('id')->on('tbl_product')->onDelete('cascade');
-            $table->foreign('id_expedition')->references('id')->on('tbl_expedition')->onDelete('cascade');
+            $table->foreign('id_expedition')->references('id')->on('tbl_subkriteria')->onDelete('cascade');
         });
     }
 
