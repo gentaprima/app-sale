@@ -34,8 +34,9 @@
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="index.html"><img src="{{asset('dashboard_css/assets/images/logo.svg')}}" alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{asset('dashboard_css/assets/images/logo-mini.svg')}}" alt="logo" /></a>
+        <!-- <a class="sidebar-brand brand-logo" href="index.html"><img src="{{asset('dashboard_css/assets/images/logo.svg')}}" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{asset('dashboard_css/assets/images/logo-mini.svg')}}" alt="logo" /></a> -->
+        <h5 class="sidebar-brand brand-logo" style="text-align: left; color:#FFF;">Toko</h5>
       </div>
       <ul class="nav">
         <li class="nav-item profile">
