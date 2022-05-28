@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Session;
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Karma Shop</title>
+	<title>2Kiddoz Shop</title>
 	<!--
 		CSS
 		============================================= -->
@@ -49,7 +49,7 @@ use Illuminate\Support\Facades\Session;
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html"><img src="{{asset('home/img/logo.png')}}" alt=""></a>
+					<a class="navbar-brand logo_h" href="/"><span style="font-size: 27px;padding-top:5px;padding-bottom:5px;color:#262626">2KIDDOZ</span></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -72,12 +72,6 @@ use Illuminate\Support\Facades\Session;
 							<?php } else { ?>
 								<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 							<?php } ?>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<!-- <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li> -->
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
 						</ul>
 					</div>
 				</div>
@@ -105,36 +99,14 @@ use Illuminate\Support\Facades\Session;
 					<div class="single-footer-widget">
 						<h6>About Us</h6>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
-							magna aliqua.
+							Toko yang menyediakan pakaian tidur dan lain lain.
 						</p>
 					</div>
 				</div>
 				<div class="col-lg-4  col-md-6 col-sm-6">
 					<div class="single-footer-widget">
-						<h6>Newsletter</h6>
-						<p>Stay update with our latest</p>
-						<div class="" id="mc_embed_signup">
-
-							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-
-								<div class="d-flex flex-row">
-
-									<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-
-
-									<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-									<div style="position: absolute; left: -5000px;">
-										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-									</div>
-
-									<!-- <div class="col-lg-4 col-md-4">
-												<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-											</div>  -->
-								</div>
-								<div class="info"></div>
-							</form>
-						</div>
+						<h6>Alamat</h6>
+						<p>Jalan Jalan Kemana aja yang penting kane</p>
 					</div>
 				</div>
 				<div class="col-lg-3  col-md-6 col-sm-6">
@@ -154,8 +126,8 @@ use Illuminate\Support\Facades\Session;
 				</div>
 				<div class="col-lg-2 col-md-6 col-sm-6">
 					<div class="single-footer-widget">
-						<h6>Follow Us</h6>
-						<p>Let us be social</p>
+						<h6>Follow</h6>
+						<p>Akun Sosial Media</p>
 						<div class="footer-social d-flex align-items-center">
 							<a href="#"><i class="fa fa-facebook"></i></a>
 							<a href="#"><i class="fa fa-twitter"></i></a>
@@ -170,7 +142,7 @@ use Illuminate\Support\Facades\Session;
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					Copyright &copy;<script>
 						document.write(new Date().getFullYear());
-					</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+					</script> All rights reserved by  <a href="https://colorlib.com" target="_blank">Developer</a>
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				</p>
 			</div>

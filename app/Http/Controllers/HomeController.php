@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ModelTransactionMember;
+use App\Models\ModelProduct;
 use App\Models\ModelVoucher;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -12,7 +11,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home/home');
+        $data['product']= ModelProduct::limit(10)->get();
+        $data['new_product'] = ModelProduct::limit(5)->get();
+        return view('home/home',$data);
     }
 
     public function login()
