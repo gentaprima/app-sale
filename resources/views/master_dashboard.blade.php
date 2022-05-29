@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="{{asset('dashboard_css/assets/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('dashboard_css/style.css')}}">
   <!-- End layout styles -->
-  <link rel="shortcut icon" href="{{asset('dashboard_css/assets/images/favicon.png')}}" />
+  <link rel="shortcut icon" href="{{ asset('home/img/logo.png') }}" />
   <link rel="stylesheet" href="{{asset('dashboard_css/assets/vendors/select2/select2.min.css')}}">
 
  
@@ -36,7 +36,7 @@
       <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
         <!-- <a class="sidebar-brand brand-logo" href="index.html"><img src="{{asset('dashboard_css/assets/images/logo.svg')}}" alt="logo" /></a>
         <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{asset('dashboard_css/assets/images/logo-mini.svg')}}" alt="logo" /></a> -->
-        <h5 class="sidebar-brand brand-logo" style="text-align: left; color:#FFF;">Toko</h5>
+        <h5 class="sidebar-brand brand-logo" style="text-align: left; color:#FFF;"><img src="{{ asset('home/img/logo.png') }}" height="50px" alt=""></h5>
       </div>
       <ul class="nav">
         <li class="nav-item profile">
@@ -137,14 +137,6 @@
               <li class=" nav-item"> <a class="nav-link {{ Request::is('dashboard/report-non-member') ? 'active' : '' }}" href="/dashboard/report-non-member">Laporan (non member)</a></li>
             </ul>
           </div>
-        </li>
-        <li class="nav-item menu-items">
-          <a class="nav-link" href="/dashboard/report">
-            <span class="menu-icon">
-              <i class="mdi mdi-table"></i>
-            </span>
-            <span class="menu-title">Report</span>
-          </a>
         </li>
       </ul>
     </nav>

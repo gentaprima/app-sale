@@ -13,6 +13,7 @@ class HomeController extends Controller
     {
         $data['product']= ModelProduct::limit(10)->get();
         $data['new_product'] = ModelProduct::limit(5)->get();
+        
         return view('home/home',$data);
     }
 

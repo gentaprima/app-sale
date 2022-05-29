@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="{{asset('home/')}}{{asset('home/')}}img/fav.png">
+	<link rel="shortcut icon" href="{{ asset('home/img/logo.png') }}">
 	<!-- Author Meta -->
 	<meta name="author" content="CodePixar">
 	<!-- Meta Description -->
@@ -49,7 +49,7 @@ use Illuminate\Support\Facades\Session;
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/"><span style="font-size: 27px;padding-top:5px;padding-bottom:5px;color:#262626">2KIDDOZ</span></a>
+					<a class="navbar-brand logo_h" href="/"><img src="{{ asset('home/img/logo.png') }}" height="50px" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -99,14 +99,14 @@ use Illuminate\Support\Facades\Session;
 					<div class="single-footer-widget">
 						<h6>About Us</h6>
 						<p>
-							Toko yang menyediakan pakaian tidur dan lain lain.
+							Toko yang menyediakan Anak-anak.
 						</p>
 					</div>
 				</div>
 				<div class="col-lg-4  col-md-6 col-sm-6">
 					<div class="single-footer-widget">
 						<h6>Alamat</h6>
-						<p>Jalan Jalan Kemana aja yang penting kane</p>
+						<p>Jl. Cipinang Muara 3 No.21, Gang Z, RT.006 RW.008, Cipinang Muara, Kec. Jatinegara, Kota Jakarta Timur, DKI Jakarta 13420</p>
 					</div>
 				</div>
 				<div class="col-lg-3  col-md-6 col-sm-6">
