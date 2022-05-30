@@ -32,9 +32,10 @@
     <center>
         <table style='width:550px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td width='70%' align='left' style='padding-right:80px; vertical-align:top'>
-                <span style='font-size:12pt'><b>Toko Serbaguna</b></span></br>
-                {{$dataTransaction[0]->alamat}}, {{$dataTransaction[0]->kecamatan}}-{{$dataTransaction[0]->kabupaten}}, {{$dataTransaction[0]->provinsi}} </br>
-                Telp : 0594094545
+        <h5 class="sidebar-brand brand-logo" style="text-align: left; color:#FFF;"><img src="{{ asset('home/img/logo.png') }}" height="50px" alt=""></h5>
+                Jl Cipinang Muara 3 No 21, Gang Z, RT.006 RW.008, Cipinang Muara, Kec. Jatinegara, Kota Jakarta Timur, DKI Jakarta 13420.</br>
+                Telp : 0856
+            Telp : 0594094545
             </td>
             <td style='vertical-align:top' width='30%' align='left'>
                 <b><span style='font-size:12pt'>FAKTUR PENJUALAN</span></b></br>
