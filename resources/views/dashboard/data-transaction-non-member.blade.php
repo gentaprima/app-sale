@@ -4,7 +4,7 @@
 @section('content')
 <div class="content-wrapper">
   <div class="page-header">
-    <h3 class="page-title">Data Transaksi Member</h3>
+    <h3 class="page-title">Data Transaksi Non Member</h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Beranda</a></li>
