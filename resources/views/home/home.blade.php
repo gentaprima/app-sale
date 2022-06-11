@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row fullscreen align-items-center justify-content-start">
             <div class="col-lg-12">
-                <div class="active-banner-slider owl-carousel">
+                <div class="{{count($new_product) > 1 ? 'active-banner-slider' : '' }} owl-carousel">
                     <!-- single-slide -->
                     @foreach($new_product as $n)
                     <div class="row single-slide align-items-center d-flex">
