@@ -108,7 +108,7 @@ use Illuminate\Support\Facades\Session;
                     <div class="single-footer-widget">
                         <h6>About Us</h6>
                         <p>
-                            Toko yang menyediakan Anak-anak.
+                            Toko yang menyediakan Pakaian Anak-anak.
                         </p>
                     </div>
                 </div>
