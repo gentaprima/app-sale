@@ -182,15 +182,10 @@ use Illuminate\Support\Facades\Session;
     <script src="{{ asset('dashboard_css/assets/js/file-upload.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('.owl-carousel').owlCarousel({
-                item: 1,
-                loop: true,
-                margin: 10,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                autoplayHoverPause: false
-            });
-        })
+            $(".owl-carousel").owlCarousel();
+        });
+    </script>
+    <script>
         let icon = document.getElementById('icon');
         let title = document.getElementById('title');
         if (icon != null) {
