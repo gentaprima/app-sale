@@ -26,7 +26,7 @@
                   <th> Email </th>
                   <th> Volume Belanja </th>
                   <th> Total Belanja </th>
-                  <th> Kkspedisi </th>
+                  <th> Ekspedisi </th>
                   <th> Hasil </th>
                   <!-- <th> Aksi </th> -->
                 </tr>
