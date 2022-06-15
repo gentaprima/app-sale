@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
                 <h1>Login</h1>
                 <nav class="d-flex align-items-center">
                     <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="#">Login</a>
+                    <a href="#">Voucher</a>
                 </nav>
             </div>
         </div>
