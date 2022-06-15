@@ -1,14 +1,14 @@
 @extends('master_dashboard')
 
-@section('title','Data Pelanggan')
+@section('title','Data Konsumen')
 @section('content')
 <div class="content-wrapper">
   <div class="page-header">
-    <h3 class="page-title">Data Pelanggan</h3>
+    <h3 class="page-title">Data Konsumen</h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data Pelanggan</li>
+        <li class="breadcrumb-item active" aria-current="page">Data Konsumen</li>
       </ol>
     </nav>
   </div>
@@ -41,12 +41,12 @@
                   <td>
                     <center>
                       <span data-toggle="modal" data-target="#modalDetail">
-                        <button id="btn_verif" onclick="detailCustomers('{{$row->id}}','{{$row->id_member}}','{{$row->full_name}}','{{$row->email}}','{{$row->phone_number}}','{{$row->alamat}}','{{$row->kecamatan}}','{{$row->kabupaten}}','{{$row->provinsi}}','{{$row->photo}}',`{{asset('uploads/profile')}}`)" type="button" class="btn btn-inverse-primary btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Detail Pelanggan">
+                        <button id="btn_verif" onclick="detailCustomers('{{$row->id}}','{{$row->id_member}}','{{$row->full_name}}','{{$row->email}}','{{$row->phone_number}}','{{$row->alamat}}','{{$row->kecamatan}}','{{$row->kabupaten}}','{{$row->provinsi}}','{{$row->photo}}',`{{asset('uploads/profile')}}`)" type="button" class="btn btn-inverse-primary btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Detail Konsumen">
                           <i class="mdi mdi-account-card-details"></i>
                         </button>
                       </span>
                       <span data-toggle="modal" data-target="#modalForm">
-                        <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->id_member}}','{{$row->full_name}}','{{$row->email}}','{{$row->phone_number}}','{{$row->alamat}}','{{$row->kecamatan}}','{{$row->kabupaten}}','{{$row->provinsi}}','{{$row->photo}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Pelanggan">
+                        <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->id_member}}','{{$row->full_name}}','{{$row->email}}','{{$row->phone_number}}','{{$row->alamat}}','{{$row->kecamatan}}','{{$row->kabupaten}}','{{$row->provinsi}}','{{$row->photo}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Konsumen">
                           <i class="mdi mdi-pencil-box-outline"></i>
                         </button>
                       </span>
@@ -158,7 +158,7 @@
   <div class="modal-dialog modal-lg" style="width: 800px;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalTitle">Detail Pelanggan</h5>
+        <h5 class="modal-title" id="modalTitle">Detail Konsumen</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -246,7 +246,7 @@
     document.getElementById('kabupaten').value = '';
     document.getElementById('provinsi').value = '';
     document.getElementById('email').readOnly = false;
-    document.getElementById('modalTitle').innerHTML = 'Tambah Pelanggan';
+    document.getElementById('modalTitle').innerHTML = 'Tambah Konsumen';
     document.getElementById('form').action = '/dashboard/add-customers';
   }
   

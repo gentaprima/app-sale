@@ -78,7 +78,7 @@
             <span class="menu-icon">
               <i class="mdi mdi-account-card-details"></i>
             </span>
-            <span class="menu-title">Data Pelanggan</span>
+            <span class="menu-title">Data Konsumen</span>
           </a>
         </li>
         <!-- <li class="nav-item menu-items {{ Request::is('dashboard/data-ekspedisi') ? 'active' : '' }}">

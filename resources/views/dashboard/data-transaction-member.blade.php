@@ -22,7 +22,7 @@
                 <tr>
                   <th> # </th>
                   <th> ID Order </th>
-                  <th> Nama Pemesan </th>
+                  <th> Nama Konsumen </th>
                   <th> Tanggal </th>
                   <th> Subtotal </th>
                   <th> Aksi </th>
@@ -79,10 +79,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <h4>Detail Pemesan</h4>
+        <h4>Detail Pemesanan</h4>
         <div class="row mt-5">
           <div class="col-sm-3">
-            <p>Nama Pembeli</p>
+            <p>Nama Konsumen</p>
             <p class="font-weight-bold" id="fullName"></p>
           </div>
           <div class="col-sm-3">
