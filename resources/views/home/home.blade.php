@@ -5,9 +5,9 @@
         <div class="container">
             <div class="row fullscreen align-items-center justify-content-start">
                 <div class="col-lg-12">
-                    {{-- <div class="{{count($new_product) > 1 ? 'active-banner-slider' : '' }} owl-carousel"> --}}
+                    <div class="{{count($new_product) > 1 ? 'active-banner-slider' : '' }} owl-carousel">
                     <!-- single-slide -->
-                    {{-- @foreach ($new_product as $n)
+                     @foreach ($new_product as $n)
                     <div class="row single-slide align-items-center d-flex">
                         <div class="col-lg-5 col-md-6">
                             <div class="banner-content">
@@ -17,12 +17,12 @@
                         </div>
                         <div class="col-lg-7">
                             <div class="banner-img">
-                                <img class="img-fluid" src="{{asset('uploads/product/').'/'.$n->image}}" alt="">
+                                <img class="img-fluid" style="heigh:550px;width:550px;" src="{{asset('uploads/product/').'/'.$n->image}}" alt="">
                             </div>
                         </div>
-                    </div>
-                    @endforeach --}}
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    </div> 
+                    @endforeach
+                    {{-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img class="d-block w-100" src="..." alt="First slide">
@@ -34,7 +34,7 @@
                                 <img class="d-block w-100" src="..." alt="Third slide">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- </div> --}}
                 </div>
             </div>
@@ -146,10 +146,10 @@
                         src="https://maps.google.com/maps?q=2kiddozshop&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
                         scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 </div>
+                @foreach ($new_product as $n)
                 <div class="col-lg-6 no-padding exclusive-right">
                     <div class="active-exclusive-product-slider">
                         <!-- single exclusive carousel -->
-                        @foreach ($new_product as $n)
                             <div class="single-exclusive-slider">
                                 <img class="img-fluid" src="{{ asset('uploads/product/') . '/' . $p->image }}" alt="">
                                 <div class="product-details">
@@ -170,8 +170,8 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
-                    </div>
                 </div>
             </div>
         </div>
