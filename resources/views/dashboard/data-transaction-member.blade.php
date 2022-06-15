@@ -44,7 +44,7 @@
                           <i class="mdi mdi-account-card-details"></i>
                         </button>
                       </span>
-                      <span data-toggle="modal" data-target="#modalForm">
+                      <span>
                         <a href="/dashboard/print-faktur-member/{{$row->id_order}}" target="_blank" id="btn_verif" style="padding-top:12px;"  class="btn btn-inverse-success btn-rounded btn-icon">
                           <i class="mdi mdi-printer"></i>
                         </a>
@@ -151,7 +151,7 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" style="width: 800px;">
     <div class="modal-content">
       <div class="modal-header">
@@ -202,7 +202,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog " style="width: 800px;">
     <div class="modal-content">
