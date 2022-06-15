@@ -190,7 +190,7 @@
             document.getElementById('textPhoto').hidden = true;
         }
 
-        function updateData(id, productName, description, price, image) {
+        function updateData(id, productName, price, image) {
             document.getElementById('textPhoto').hidden = false;
             document.getElementById('productName').value = productName;
             document.getElementById('description').value = $('#btn_verif').data("desc");
