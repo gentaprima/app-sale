@@ -45,9 +45,9 @@ use Illuminate\Support\Facades\Session;
                             </td>
                             <td>
                                 <?php if($row->is_use == 0){ ?>
-                                <button class="btn btn-outline-primary btn-sm">Belum digunakan</button>
+                                    <button class="btn btn-outline-primary btn-sm">Belum digunakan</button>
                                 <?php }else{ ?>
-                                    <button class="btn btn-outline-danger btn-sm">Belum digunakan</button>
+                                    <button class="btn btn-outline-success btn-sm">Sudah digunakan</button>
                                 <?php } ?>
                             </td>
                             
