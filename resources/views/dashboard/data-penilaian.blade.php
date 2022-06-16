@@ -4,11 +4,11 @@
 @section('content')
 <div class="content-wrapper">
   <div class="page-header">
-    <h3 class="page-title">Data Alternatif Pelanggan terbaik bulan ini</h3>
+    <h3 class="page-title">Data Alternatif Konsumen terbaik bulan ini</h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data Alternatif Pelanggan terbaik bulan ini</li>
+        <li class="breadcrumb-item active" aria-current="page">Data Alternatif Konsumen terbaik bulan ini</li>
       </ol>
     </nav>
   </div>
@@ -138,7 +138,7 @@
   <div class="modal-dialog modal-lg" style="width: 800px;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalTitle">Detail Pelanggan</h5>
+        <h5 class="modal-title" id="modalTitle">Detail Konsumen</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
