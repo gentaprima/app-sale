@@ -119,7 +119,7 @@
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/data-kriteria') ? 'active' : '' }}" href="/dashboard/data-kriteria"> Data Kriteria</a></li>
               <li class=" nav-item"> <a class="nav-link {{ Request::is('dashboard/data-penilaian') ? 'active' : '' }}" href="/dashboard/data-penilaian">Data Penilaian</a></li>
-              <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/data-perhitungan') ? 'active' : '' }}" href="/dashboard/data-perhitungan">Perhitungan Pelanggan terbaik</a></li>
+              <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/data-perhitungan') ? 'active' : '' }}" href="/dashboard/data-perhitungan">Perhitungan Konsumen terbaik</a></li>
             </ul>
           </div>
         </li>

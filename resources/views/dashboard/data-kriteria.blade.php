@@ -44,7 +44,7 @@
                         </a>
                       </span>
                       <span data-toggle="modal" data-target="#modalForm">
-                        <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->kriteria}}','{{$row->jenis}}','{{$row->bobot}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Produk">
+                        <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->kriteria}}','{{$row->jenis}}','{{$row->bobot}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Kriteria">
                           <i class="mdi mdi-pencil-box-outline"></i>
                         </button>
                       </span>
