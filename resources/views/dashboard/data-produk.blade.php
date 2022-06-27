@@ -47,10 +47,10 @@
                                             <td>
                                                 <center>
                                                     <span data-toggle="modal" data-target="#modalForm">
-                                                        <button id="btn_verif" data-desc='{{ $row->product_desc }}'
-                                                            onclick="updateData('{{ $row->id }}','{{ $row->product_name }}','{{ $row->price }}','{{ $row->image }}')"
+                                                        <button id="btn_verif{{ $loop->iteration}}"  data-desc='{{ $row->product_desc }}'
+                                                            onclick="updateData('{{ $row->id }}','{{ $row->product_name }}','{{ $row->price }}','{{ $row->image }}',this.id)"
                                                             type="button"
-                                                            class="btn btn-inverse-success btn-rounded btn-icon"
+                                                            class="btn btn-inverse-success btn-rounded btn-icon btn-verif"
                                                             data-toggle="tooltip" data-placement="top"
                                                             title="Ubah Data Produk">
                                                             <i class="mdi mdi-pencil-box-outline"></i>
@@ -190,10 +190,10 @@
             document.getElementById('textPhoto').hidden = true;
         }
 
-        function updateData(id, productName, price, image) {
+        function updateData(id, productName, price, image,id) {
             document.getElementById('textPhoto').hidden = false;
             document.getElementById('productName').value = productName;
-            document.getElementById('description').value = $('#btn_verif').data("desc");
+            document.getElementById('description').value = $("#"+id).data("desc");
             document.getElementById('price').value = price;
             document.getElementById('imageText').value = image;
             document.getElementById('modalTitle').innerHTML = 'Perbarui Produk';
