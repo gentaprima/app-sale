@@ -16,8 +16,22 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="input-group">
+                            <button id="pdf" class="btn btn-outline-primary size-btn">PDF</button>
+                            <button id="excel" class="btn btn-outline-primary size-btn">EXCEL</button>
+                            <button id="print" class="btn btn-outline-primary size-btn">PRINT</button>
+
+                        </div>
+                        <div class="ms-md-auto d-flex">
+                            <div class="input-group" style="margin-right: 10px;width:100%;z-index:1">
+                                <span class="input-group-text text-body" style="background-color: #2A3038;border-color:#2A3038;"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                <input type="text" style="width: 250px;" id="searchBox" class="form-control" placeholder="Cari Data">
+                            </div>
+                        </div>
+                    </div>
                     <div class="table-responsive">
-                        <table class="table table-striped dataTable js-exportable mt-3">
+                        <table class="table table-striped dataTable " id="table">
                             <thead>
                                 <tr>
                                     <th> # </th>

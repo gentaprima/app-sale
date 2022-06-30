@@ -25,8 +25,21 @@
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{{ asset('home/img/logo.png') }}" />
   <link rel="stylesheet" href="{{asset('dashboard_css/assets/vendors/select2/select2.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+  <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -241,7 +254,7 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="{{asset('dashboard_css/assets/vendors/select2/select2.min.js')}}"></script>
   <script src="{{asset('dashboard_css/assets/js/select2.js')}}"></script>
-  <script src="{{asset('dashboard_css/jquery-datatable/jquery.dataTables.js')}}"></script>
+  <!-- <script src="{{asset('dashboard_css/jquery-datatable/jquery.dataTables.js')}}"></script>
   <script src="{{asset('dashboard_css/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
   <script src="{{asset('dashboard_css/jquery-datatable/extensions/export/dataTables.buttons.min.j')}}s"></script>
   <script src="{{asset('dashboard_css/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
@@ -249,8 +262,36 @@
   <script src="{{asset('dashboard_css/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
   <script src="{{asset('dashboard_css/jquery-datatable/extensions/export/vfs_fonts.j')}}s"></script>
   <script src="{{asset('dashboard_css/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
-  <script src="{{asset('dashboard_css/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
-  <script src="{{asset('dashboard_css/js/tables/jquery-datatable.js')}}"></script>
+  <script src="{{asset('dashboard_css/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script> -->
+  <!-- <script src="{{asset('dashboard_css/js/tables/jquery-datatable.js')}}"></script> -->
+  <script>
+    $(document).ready(function() {
+      $.noConflict()
+      table = $('#table').DataTable({
+        paging: false,
+        ordering: false,
+        info: false,
+        searching: true,
+        dom: 'lrt',
+        "buttons": ['excelHtml5', 'print', 'pdfHtml5']
+
+      });
+      $('table').removeClass('dataTable')
+      $('table').removeClass('no-footer')
+      $('#searchBox').keyup(function() {
+        table.search($(this).val()).draw();
+      });
+      $('#pdf').click(function() {
+        table.buttons(0, 2).trigger()
+      });
+      $('#excel').click(function() {
+        table.buttons(0, 0).trigger()
+      })
+      $('#print').click(function() {
+        table.buttons(0, 1).trigger()
+      })
+    });
+  </script>
   <script>
     let icon = document.getElementById('icon');
     let title = document.getElementById('title');
@@ -265,6 +306,7 @@
   </script>
   <script>
     $(document).ready(function() {
+      $.noConflict()
       $('.js-example-basic-single').select2();
       $('.js-example-basic-singlee').select2();
     });
