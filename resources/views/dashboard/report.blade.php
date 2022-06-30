@@ -24,8 +24,8 @@
                                     <th> ID Order </th>
                                     <th> Nama Pemesan </th>
                                     <th> Produk </th>
-                                    <th> Subtotal </th>
                                     <th> Ekspedisi </th>
+                                    <th> Subtotal </th>
                                     <th> Tanggal </th>
                                 </tr>
                             </thead>
