@@ -1,14 +1,14 @@
 @extends('master_dashboard')
 
-@section('title','Data Pelanggan Terbaik')
+@section('title','Data Konsumen Terbaik')
 @section('content')
 <div class="content-wrapper">
   <div class="page-header">
-    <h3 class="page-title">Data Perhitungan Pelanggan Tebaik</h3>
+    <h3 class="page-title">Data Perhitungan Konsumen Tebaik</h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data Perhitungan Pelanggan Tebaik</li>
+        <li class="breadcrumb-item active" aria-current="page">Data Perhitungan Konsumen Tebaik</li>
       </ol>
     </nav>
   </div>
@@ -47,7 +47,7 @@
               </tbody>
             </table>
             @php if(count($dataPerhitungan) > 0){ @endphp
-            <div class="alert alert-success mt-5">Berdasarkan perhitungan menggunakan metode Waspas, Pelanggan terbaik jatuh pada : <span class="font-weight-bold">{{$dataPerhitungan[0]->full_name}}</span></div>
+            <div class="alert alert-success mt-5">Berdasarkan perhitungan menggunakan metode Waspas, Konsumen terbaik jatuh pada : <span class="font-weight-bold">{{$dataPerhitungan[0]->full_name}}</span></div>
             @php } @endphp
           </div>
         </div>
@@ -68,7 +68,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <h5>Anda yakin ingin menghitung pelanggan terbaik bulan ini?</h5>
+        <h5>Anda yakin ingin menghitung Konsumen terbaik bulan ini?</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
