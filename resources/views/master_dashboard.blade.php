@@ -273,8 +273,7 @@
         info: false,
         searching: true,
         dom: 'lrt',
-        "buttons": ['excelHtml5', 'print', 'pdfHtml5']
-
+        "buttons": ['excelHtml5', 'print', 'pdfHtml5','csvHtml5','copyHtml5']
       });
       $('table').removeClass('dataTable')
       $('table').removeClass('no-footer')
@@ -289,6 +288,12 @@
       })
       $('#print').click(function() {
         table.buttons(0, 1).trigger()
+      })
+      $('#csv').click(function() {
+        table.buttons(0, 3).trigger()
+      })
+      $('#copy').click(function() {
+        table.buttons(0, 4).trigger()
       })
     });
   </script>

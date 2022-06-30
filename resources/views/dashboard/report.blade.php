@@ -18,9 +18,11 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="input-group">
-                            <button id="pdf" class="btn btn-outline-primary size-btn">PDF</button>
-                            <button id="excel" class="btn btn-outline-primary size-btn">EXCEL</button>
-                            <button id="print" class="btn btn-outline-primary size-btn">PRINT</button>
+                            <button id="copy" class="btn btn-primary size-btn mx-1">COPY</button>
+                            <button id="csv" class="btn btn-primary size-btn mx-1">CSV</button>
+                            <button id="excel" class="btn btn-primary size-btn mx-1">EXCEL</button>
+                            <button id="pdf" class="btn btn-primary size-btn mx-1">PDF</button>
+                            <button id="print" class="btn btn-primary size-btn mx-1">PRINT</button>
 
                         </div>
                         <div class="ms-md-auto d-flex">
