@@ -77,14 +77,14 @@
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Subkriteria</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="subKriteria" value="{{old('subKriteria')}}" name="subKriteria" placeholder="Sub Kriteira">
+                            <input type="text" required class="form-control" id="subKriteria" value="{{old('subKriteria')}}" name="subKriteria" placeholder="Sub Kriteira">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Nilai Bobot</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nilaiSub" value="{{old('nilaiSub')}}" name="nilaiSub" placeholder="Nilai">
+                            <input type="text" required class="form-control" id="nilaiSub" value="{{old('nilaiSub')}}" name="nilaiSub" placeholder="Nilai">
                         </div>
                     </div>
                     <input type="hidden" name="idKriteria" value="{{$dataKriteria->id}}">
