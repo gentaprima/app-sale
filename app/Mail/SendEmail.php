@@ -28,7 +28,8 @@ class SendEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('gentaprima601@gmail.com')
+        return $this->from('iuranwarga@yahoo.com','2Kiddoz')
+        ->subject('Pemberitahuan')
         ->view('view-email')
         ->with(
          [
