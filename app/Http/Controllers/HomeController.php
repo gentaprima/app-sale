@@ -19,6 +19,7 @@ class HomeController extends Controller
 
     public function login()
     {
+        $data['new_product'] = ModelProduct::limit(5)->get();
         return view('home/login');
     }
 
@@ -30,15 +31,16 @@ class HomeController extends Controller
     public function dataTransaction()
     {
         $dataTransaction = DB::table('tbl_transaction_member')
-            ->leftJoin('tbl_expedition', 'tbl_transaction_member.id_expedition', '=', 'tbl_expedition.id')
-            ->where('id_users','=',Session::get('dataUsers')->id)
-            ->groupBy('id_order')
-            ->orderBy('tbl_transaction_member.id', 'desc')
-            ->get();
-
+        ->leftJoin('tbl_expedition', 'tbl_transaction_member.id_expedition', '=', 'tbl_expedition.id')
+        ->where('id_users','=',Session::get('dataUsers')->id)
+        ->groupBy('id_order')
+        ->orderBy('tbl_transaction_member.id', 'desc')
+        ->get();
+        
         $data = [
             'dataTransaction' => $dataTransaction
         ];
+        $data['new_product'] = ModelProduct::limit(5)->get();
         return view('home/data-transaksi', $data);
     }
 
@@ -46,6 +48,7 @@ class HomeController extends Controller
     {
         $dataVoucher = ModelVoucher::where('id_users','=',Session::get('dataUsers')->id)
                                     ->get();
+                                        $data['new_product'] = ModelProduct::limit(5)->get();
 
         $data = [
             'dataVoucher' => $dataVoucher

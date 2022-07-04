@@ -123,14 +123,9 @@ use Illuminate\Support\Facades\Session;
                     <div class="single-footer-widget mail-chimp">
                         <h6 class="mb-20">Instragram Feed</h6>
                         <ul class="instafeed d-flex flex-wrap">
-                            <li><img src="{{ asset('home/img/i1.jpg') }}" alt=""></li>
-                            <li><img src="{{ asset('home/img/i2.jpg') }}" alt=""></li>
-                            <li><img src="{{ asset('home/img/i3.jp') }}g" alt=""></li>
-                            <li><img src="{{ asset('home/img/i4.jpg') }}" alt=""></li>
-                            <li><img src="{{ asset('home/img/i5.jpg') }}" alt=""></li>
-                            <li><img src="{{ asset('home/img/i6.jpg') }}" alt=""></li>
-                            <li><img src="{{ asset('home/img/i7.jpg') }}" alt=""></li>
-                            <li><img src="{{ asset('home/img/i8.jpg') }}" alt=""></li>
+                            @foreach ($new_product as $n)
+                            <li><img src="{{asset('uploads/product/').'/'.$n->image}}"  style="object-fit: contain" height="50px" alt=""></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
