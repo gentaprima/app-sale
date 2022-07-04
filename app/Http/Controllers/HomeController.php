@@ -20,12 +20,14 @@ class HomeController extends Controller
     public function login()
     {
         $data['new_product'] = ModelProduct::limit(5)->get();
-        return view('home/login');
+        return view('home/login',$data);
     }
 
     public function profile()
     {
-        return view('home/profile');
+        $data['new_product'] = ModelProduct::limit(5)->get();
+
+        return view('home/profile',$data);
     }
 
     public function dataTransaction()
@@ -48,9 +50,10 @@ class HomeController extends Controller
     {
         $dataVoucher = ModelVoucher::where('id_users','=',Session::get('dataUsers')->id)
                                     ->get();
-                                        $data['new_product'] = ModelProduct::limit(5)->get();
+                                       
 
         $data = [
+            'new_product'=> ModelProduct::limit(5)->get(),
             'dataVoucher' => $dataVoucher
         ];
         return view('home/data-voucher', $data);

@@ -49,7 +49,7 @@
 						<!-- single-slide -->
                         @foreach ($new_product as $n)
 
-						<div class="row single-slide align-items-center d-flex">
+						<div class="row single-slide align-items-center d-flex" style='padding-top:130px'>
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
                                     <h1>Koleksi Produk Baru</h1>
@@ -66,7 +66,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="banner-img">
-									<img class="img-fluid" src="{{asset('uploads/product/').'/'.$n->image}}" alt="" style="object-fit: contain;height:500px;padding-top:150px">
+									<img class="img-fluid" src="{{asset('uploads/product/').'/'.$n->image}}" alt="" style="object-fit: contain;height:500px">
 								</div>
 							</div>
 						</div>

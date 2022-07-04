@@ -190,10 +190,10 @@
             document.getElementById('textPhoto').hidden = true;
         }
 
-        function updateData(id, productName, price, image,id) {
+        function updateData(id, productName, price, image,val) {
             document.getElementById('textPhoto').hidden = false;
             document.getElementById('productName').value = productName;
-            document.getElementById('description').value = $("#"+id).data("desc");
+            document.getElementById('description').value = $("#"+val).data("desc");
             document.getElementById('price').value = price;
             document.getElementById('imageText').value = image;
             document.getElementById('modalTitle').innerHTML = 'Perbarui Produk';

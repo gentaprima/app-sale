@@ -69,7 +69,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">No Telepon</label>
                                     <div class="col-sm-8">
-                                        <input type="text" required name="phoneNumber" id="phoneNumber" class="form-control">
+                                        <input type="number" required name="phoneNumber" id="phoneNumber" class="form-control">
                                     </div>
                                 </div>
                             </div>

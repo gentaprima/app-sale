@@ -260,7 +260,7 @@
     document.getElementById('kecamatan').value = kecamatan;
     document.getElementById('kabupaten').value = kabupaten;
     document.getElementById('provinsi').value = provinsi;
-    document.getElementById('modalTitle').innerHTML = 'Perbarui Pelangaan';
+    document.getElementById('modalTitle').innerHTML = 'Perbarui Konsumen';
     document.getElementById('form').action = `/dashboard/update-customers/${id}`;
   }
 
