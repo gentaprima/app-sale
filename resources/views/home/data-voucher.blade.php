@@ -32,6 +32,7 @@ use Illuminate\Support\Facades\Session;
                             <th scope="col">#</th>
                             <th scope="col">Kode Voucher</th>
                             <th scope="col">Voucher</th>
+                            <th scope="col">Aktif</th>
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
@@ -42,6 +43,13 @@ use Illuminate\Support\Facades\Session;
                             <td class="font-weight-bold"> {{$row->code_voucher}} </td>
                             <td>
                                 <h5>{{$row->description}}</h5>
+                            </td>
+                            <td>
+                                @php if($row->expired_in >= date('Y-m-d')){ @endphp
+                                    Aktif sampai <b> <?= date_format(date_create($row->expired_in),'d F Y') ?> </b>
+                                @php }else{ @endphp
+                                    <span class="badge badge-danger">Sudah Kadaluarsa</span> 
+                                @php } @endphp
                             </td>
                             <td>
                                 <?php if($row->is_use == 0){ ?>

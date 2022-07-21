@@ -25,6 +25,7 @@
                   <th> Volume Belanja </th>
                   <th> Total Belanja </th>
                   <th> Ekspedisi </th>
+                  <th> Rating </th>
                   <!-- <th> Aksi </th> -->
                 </tr>
               </thead>
@@ -36,6 +37,7 @@
                   <td>{{$row->volume_belanja}}</td>
                   <td>{{$row->total_belanja}}</td>
                   <td>{{$row->ekspedisi}}</td>
+                  <td>{{$row->rating}}</td>
 
                 </tr>
                 @endforeach

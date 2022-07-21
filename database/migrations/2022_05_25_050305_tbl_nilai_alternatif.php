@@ -19,11 +19,13 @@ class TblNilaiAlternatif extends Migration
             $table->unsignedBigInteger('volume_belanja')->unsigned();
             $table->unsignedBigInteger('total_belanja')->unsigned();
             $table->unsignedBigInteger('ekspedisi')->unsigned();
+            $table->unsignedBigInteger('rating')->unsigned();
             $table->date('date');
             $table->foreign('id_users')->references('id')->on('tbl_users')->onDelete('cascade');
             $table->foreign('volume_belanja')->references('id')->on('tbl_subkriteria')->onDelete('cascade');
             $table->foreign('total_belanja')->references('id')->on('tbl_subkriteria')->onDelete('cascade');
             $table->foreign('ekspedisi')->references('id')->on('tbl_subkriteria')->onDelete('cascade');
+            $table->foreign('rating')->references('id')->on('tbl_subkriteria')->onDelete('cascade');
         });
     }
 

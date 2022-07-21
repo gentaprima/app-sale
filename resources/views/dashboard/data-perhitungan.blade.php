@@ -27,6 +27,7 @@
                   <th> Volume Belanja </th>
                   <th> Total Belanja </th>
                   <th> Ekspedisi </th>
+                  <th> Rating </th>
                   <th> Hasil </th>
                   <!-- <th> Aksi </th> -->
                 </tr>
@@ -40,6 +41,7 @@
                   <td>{{$row->n_volume_belanja}}</td>
                   <td>{{$row->n_total_belanja}}</td>
                   <td>{{$row->n_ekspedisi}}</td>
+                  <td>{{$row->n_rating}}</td>
                   <td>{{$row->n_total}}</td>
 
                 </tr>
@@ -68,11 +70,19 @@
         </button>
       </div>
       <div class="modal-body">
-        <h5>Anda yakin ingin menghitung Konsumen terbaik bulan ini?</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <a href="/dashboard/calculate-normalisasi" class="btn btn-primary">Hitung</a>
+        <form action="/dashboard/calculate-normalisasi" method="post">
+          @csrf
+          <div class="form-group row">
+            <label for="" class="col-sm-2">Pilih Bulan</label>
+            <div class="col-sm-10">
+              <input type="month" name="month" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Hitung</button>
+        </form>
         </form>
       </div>
     </div>

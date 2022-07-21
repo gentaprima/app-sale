@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Form Tambah Pembelian</h4>
-                    <form action="/dashboard/add-transaction" method="post">
+                    <form action="/dashboard/add-transaction" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Tipe Pelanggan</label>
@@ -159,6 +159,18 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2">Bukti Transaksi</label>
+                            <div class="col-sm-10">
+                                <input type="file" name="image" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" id="imageText" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                         <hr>
                         <div class="form-group row">
                             <label for="" class="col-sm-2 col-form-label">Sub Total</label>
@@ -175,12 +187,17 @@
                         </div>
 
                         <div class="form-group row" id="formVoucher" hidden="true">
-                            <label for="" class="col-sm-2 col-form-label">Kode Voucher</label>
+                            <label for="" class="col-sm-2 col-form-label">Voucher</label>
                             <div class="col-sm-10">
-                                <input type="text" id="kodeVoucher" name="kodeVoucher" class="form-control mb-4">
-                                <button type="button" onclick="calculateDiscount()" class="btn btn-outline-success mb-3">Proses Voucher</button>
-                                <p style="color:red;" id="messageVoucher" hidden="true">Kode Voucher yang anda masukan tidak terdaftar disistem.</p>
+                                <!-- <input type="text" id="kodeVoucher" name="kodeVoucher" class="form-control mb-4"> -->
+                                <select name="kodeVoucher" id="listVoucher" class="form-control" onchange="selectVoucher(this)">
+                                    <option value="">-- Pilih Voucher --</option>
+                                </select>
+
                             </div>
+
+                            <!-- <button type="button" onclick="calculateDiscount()" class="btn btn-outline-success mb-3 mt-3">Proses Voucher</button>
+                            <p style="color:red;" id="messageVoucher" hidden="true">Kode Voucher yang anda masukan tidak terdaftar disistem.</p> -->
                         </div>
                         <div class="form-group row" id="formDiscount" hidden="true">
                             <label for="" class="col-sm-2 col-form-label">Diskon</label>
@@ -279,6 +296,7 @@
             url: `/dashboard/get-customer-by-email/${select.value}`,
             success: function(response) {
                 let resp = JSON.parse(response);
+                let id = resp.data['id'];
                 document.getElementById('fullName').value = resp.data['full_name'];
                 document.getElementById('email').value = resp.data['email'];
                 document.getElementById('phoneNumber').value = resp.data['phone_number'];
@@ -286,6 +304,7 @@
                 document.getElementById('provinsi').value = resp.data['provinsi'];
                 document.getElementById('kecamatan').value = resp.data['kecamatan'];
                 document.getElementById('kabupaten').value = resp.data['kabupaten'];
+                getVoucher(id);
             }
 
         })
@@ -417,8 +436,28 @@
         })
     }
 
+    function getVoucher(id) {
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: `/dashboard/get-voucher/${id}`,
+            success: function(response) {
+                $.each(response.data, function(key, value) {
+                    $("#listVoucher").append('<option value=' + value.code_voucher + '>' + value.code_voucher + ' - ' + value.description + '</option>');
+                })
+            }
+        })
+    }
+
+    function selectVoucher(val) {
+        let voucher = val.value;
+        calculateDiscount(voucher);
+    }
+
     function deleteForm(id) {
         $("#form" + id).remove();
+        let countForm = document.getElementById("countForm").value;
+        document.getElementById("countForm").value = parseInt(countForm) - 1;
     }
 
     function calculateTotal() {
@@ -427,6 +466,7 @@
         if (product != '' && qty != '') {
             let countForm = $("#countForm").val();
             let total = 0;
+            console.log(countForm);
             for (let i = 1; i <= countForm; i++) {
                 let totalPrice = document.getElementById('totalHide' + i).value;
                 total += parseInt(totalPrice)
@@ -460,8 +500,8 @@
         }
     }
 
-    function calculateDiscount() {
-        let voucher = document.getElementById('kodeVoucher').value;
+    function calculateDiscount(voucher) {
+        // let voucher = document.getElementById('kodeVoucher').value;
         $.ajax({
             type: 'get',
             dataType: 'html',
@@ -479,13 +519,13 @@
                         let subTotal = document.getElementById('subTotalHide').value;
                         document.getElementById("formDiscount").hidden = false
                         document.getElementById("formGrandTotal").hidden = false
-                        document.getElementById("messageVoucher").hidden = true
+                        // document.getElementById("messageVoucher").hidden = true
                         document.getElementById('discount').value = 'Rp ' + (data.data['total_discount']).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                         document.getElementById('discountHide').value = data.data['total_discount']
                         document.getElementById('grandTotal').value = 'Rp ' + (subTotal - data.data['total_discount']).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                         document.getElementById('grandTotalHide').value = subTotal - data.data['total_discount']
                     } else {
-                        document.getElementById("messageVoucher").hidden = false
+                        // document.getElementById("messageVoucher").hidden = false
                         document.getElementById("messageVoucher").innerHTML = 'Maaf, kode voucher sudah digunakan.'
                         document.getElementById("formDiscount").hidden = true
                         document.getElementById("formGrandTotal").hidden = true

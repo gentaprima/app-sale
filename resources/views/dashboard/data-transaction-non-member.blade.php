@@ -25,6 +25,7 @@
                   <th> Nama Konsumen </th>
                   <th> Tanggal </th>
                   <th> Subtotal </th>
+                  <th> Status </th>
                   <th> Aksi </th>
                 </tr>
               </thead>
@@ -36,9 +37,15 @@
                   <td>{{$row->full_name}}</td>
                   <td>{{$row->date}}</td>
                   <td>@php echo number_format($row->subtotal, 2, ".", ","); @endphp</td>
+                  <td><span class="badge badge-success">Selesai</span></td>
                   </center>
                   <td>
                     <center>
+                      <span data-toggle="modal" data-target="#modalBukti">
+                        <button id="btn_verif" onclick="showImage('{{$row->bukti_transaksi}}',`{{asset('uploads/transaction')}}`)" type="button" class="btn btn-inverse-info btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Bkuti Transaksi">
+                          <i class="mdi mdi-information"></i>
+                        </button>
+                      </span>
                       <span data-toggle="modal" data-target="#modalDetail">
                         <button id="btn_verif" onclick="detailOrder('{{$row->id_order}}')" type="button" class="btn btn-inverse-primary btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Detail Transaksi">
                           <i class="mdi mdi-account-card-details"></i>
@@ -67,6 +74,26 @@
   </div>
   <!-- content-wrapper ends -->
 
+</div>
+<div class="modal fade" id="modalBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" style="width: 800px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle">Detail Transaksi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <center>
+          <img src="" id="buktiTransaksi" alt="" style="width: 100%; height: auto;">
+        </center>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -221,6 +248,10 @@
 </div>
 
 <script>
+  function showImage(image, location) {
+    document.getElementById("buktiTransaksi").src = location + '/' + image;
+  }
+
   function detailOrder(id) {
     $("#tableData tbody").empty();
     $.ajax({

@@ -45,7 +45,7 @@ class LoginController extends Controller
                                 ->withInput($request->input());
         }
 
-        if($checkUsers->role == 1){
+        if($checkUsers->role == 1 || $checkUsers->role == 2){
             Session::put('dataUsers',$checkUsers);
             Session::put('isAdmin',true);
             Session::put('login', true);

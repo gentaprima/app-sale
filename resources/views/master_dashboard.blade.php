@@ -61,7 +61,11 @@
               </div>
               <div class="profile-name">
                 <h5 class="mb-0 font-weight-normal">{{ Session::get('dataUsers')->full_name }}</h5>
-                <span>Admin</span>
+                @php if(Session::get('dataUsers')->role == 1){ @endphp
+                <span>Super Admin</span>
+                @php }else{ @endphp
+                  <span>Pelayan</span>
+                @php } @endphp
               </div>
             </div>
 
@@ -94,6 +98,22 @@
             <span class="menu-title">Data Konsumen</span>
           </a>
         </li>
+        <li class="nav-item menu-items {{ Request::is('dashboard/data-hadiah') ? 'active' : '' }}">
+          <a class="nav-link " href="/dashboard/data-hadiah">
+            <span class="menu-icon">
+              <i class="mdi mdi-library-books"></i>
+            </span>
+            <span class="menu-title">Data Hadiah</span>
+          </a>
+        </li>
+        <li class="nav-item menu-items {{ Request::is('dashboard/data-pelayan') ? 'active' : '' }}">
+          <a class="nav-link " href="/dashboard/data-pelayan">
+            <span class="menu-icon">
+              <i class="mdi mdi-library-books"></i>
+            </span>
+            <span class="menu-title">Data Pelayan</span>
+          </a>
+        </li>
         <!-- <li class="nav-item menu-items {{ Request::is('dashboard/data-ekspedisi') ? 'active' : '' }}">
           <a class="nav-link" href="/dashboard/data-ekspedisi">
             <span class="menu-icon">
@@ -119,7 +139,7 @@
             </ul>
           </div>
         </li>
-
+        @php if(Session::get('dataUsers')->role == 1){ @endphp
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
@@ -144,13 +164,15 @@
             <span class="menu-title">Laporan</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse {{ Request::is('dashboard/data-report-member') || Request::is('dashboard/data-report-non-member') ? 'show' : '' }}" id="ui-report">
+          <div class="collapse {{ Request::is('dashboard/data-report-member') || Request::is('dashboard/data-report-non-member')  || Request::is('dashboard/report-konsumen-terbaik')? 'show' : '' }}" id="ui-report">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/data-report-member') ? 'active' : '' }}" href="/dashboard/report-member"> Laporan (member)</a></li>
               <li class=" nav-item"> <a class="nav-link {{ Request::is('dashboard/report-non-member') ? 'active' : '' }}" href="/dashboard/report-non-member">Laporan (non member)</a></li>
+              <li class=" nav-item"> <a class="nav-link {{ Request::is('dashboard/report-konsumen-terbaik') ? 'active' : '' }}" href="/dashboard/report-konsumen-terbaik">Laporan Konsumen Terbaik</a></li>
             </ul>
           </div>
         </li>
+        @php } @endphp
       </ul>
     </nav>
     <!-- partial -->
@@ -184,7 +206,7 @@
                     </div>
                   </div>
                   <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Settings</p>
+                    <p class="preview-subject mb-1">Profil</p>
                   </div>
                 </a>
                 <div class="dropdown-divider"></div>

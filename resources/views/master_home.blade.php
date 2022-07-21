@@ -63,6 +63,10 @@ use Illuminate\Support\Facades\Session;
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item {{ Request::is('/') ? 'active' : '' }}"><a class="nav-link"
                                     href="/">Beranda</a></li>
+                            <li class="nav-item {{ Request::is('/keuntungan-menjadi-member') ? 'active' : '' }}"><a class="nav-link"
+                                    href="/keuntungan-menjadi-member">Keuntungan Menjadi Member</a></li>
+                            <li class="nav-item {{ Request::is('/pemenang-konsumen-terbaik') ? 'active' : '' }}"><a class="nav-link"
+                                    href="/pemenang-konsumen-terbaik">Pemenang Konsumen Terbaik</a></li>
                             <?php if (Session::get('login') == true) {  ?>
                             <li class="nav-item {{ Request::is('data-transaksi') ? 'active' : '' }}"><a
                                     class="nav-link" href="/data-transaksi">Riwayat Transaksi</a></li>
@@ -123,9 +127,7 @@ use Illuminate\Support\Facades\Session;
                     <div class="single-footer-widget mail-chimp">
                         <h6 class="mb-20">Instragram Feed</h6>
                         <ul class="instafeed d-flex flex-wrap">
-                            @foreach ($new_product as $n)
-                            <li><img src="{{asset('uploads/product/').'/'.$n->image}}"  style="object-fit: contain" height="50px" alt=""></li>
-                            @endforeach
+                         
                         </ul>
                     </div>
                 </div>

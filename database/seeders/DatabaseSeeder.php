@@ -40,16 +40,21 @@ class DatabaseSeeder extends Seeder
             [
                 'kriteria'  => "Volume Belanja",
                 'jenis'     => 'Benefit',
-                'bobot'     => '0.4'
+                'bobot'     => '0.3'
             ],
             [
                 'kriteria'  => "Total Belanja",
                 'jenis'     => 'Benefit',
-                'bobot'     => '0.4'
+                'bobot'     => '0.3'
             ],
             [
                 'kriteria'  => "Ekspedisi",
                 'jenis'     => 'Cost',
+                'bobot'     => '0.2'
+            ],
+            [
+                'kriteria'  => "Rating",
+                'jenis'     => 'Benefit',
                 'bobot'     => '0.2'
             ]
 
@@ -110,6 +115,42 @@ class DatabaseSeeder extends Seeder
                 'description'   => 'Ambil ditoko',
                 'jumlah'   => 2,
                 'nilai_bobot'     => 50
+            ],
+            [
+                'id_kriteria'   => 4,
+                'description'   => 'Sangat Buruk',
+                'jumlah'   => 1,
+                'nilai_bobot'     => 5
+            ],
+            [
+                'id_kriteria'   => 4,
+                'description'   => 'Buruk',
+                'jumlah'   => 2,
+                'nilai_bobot'     => 10
+            ],
+            [
+                'id_kriteria'   => 4,
+                'description'   => 'Cukup',
+                'jumlah'   => 3,
+                'nilai_bobot'     => 20
+            ],
+            [
+                'id_kriteria'   => 4,
+                'description'   => 'Baik',
+                'jumlah'   => 4,
+                'nilai_bobot'     => 30
+            ],
+            [
+                'id_kriteria'   => 4,
+                'description'   => 'Sangat Baik',
+                'jumlah'   => 5,
+                'nilai_bobot'     => 35
+            ],
+            [
+                'id_kriteria'   => 4,
+                'description'   => 'Belum ada penilaian',
+                'jumlah'   => 0,
+                'nilai_bobot'     => 0
             ],
         ];
 

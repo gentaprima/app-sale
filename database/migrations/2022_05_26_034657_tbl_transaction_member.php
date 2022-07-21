@@ -23,6 +23,10 @@ class TblTransactionMember extends Migration
             $table->integer('total');
             $table->integer('subtotal');
             $table->integer('discount');
+            $table->integer('rating');
+            $table->integer('status');
+            $table->text('ulasan');
+            $table->text('bukti_transaksi');
             $table->date('date');
             $table->foreign('id_users')->references('id')->on('tbl_users')->onDelete('cascade');
             $table->foreign('id_product')->references('id')->on('tbl_product')->onDelete('cascade');

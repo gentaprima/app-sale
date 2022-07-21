@@ -20,4 +20,15 @@ class VoucherController extends Controller
             'status' => $status
         ]);
     }
+
+    public function getVoucher($id){
+        $data = ModelVoucher::where('id_users',$id)
+                            ->where('is_use',0)
+                            ->whereDate('expired_in','>=', date('Y-m-d'))
+                            ->get();
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
+    }
 }

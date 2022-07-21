@@ -27,6 +27,7 @@ class TblTransactionNonMember extends Migration
             $table->integer('total');
             $table->integer('subtotal');
             $table->date('date');
+            $table->text('bukti_transaksi');
             $table->unsignedBigInteger('id_product')->unsigned();
             $table->unsignedBigInteger('id_expedition')->unsigned();
             $table->foreign('id_product')->references('id')->on('tbl_product')->onDelete('cascade');

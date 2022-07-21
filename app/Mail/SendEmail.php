@@ -16,9 +16,10 @@ class SendEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data,$type = null)
     {
         $this->data = $data;
+        $this->type = $type;
     }
 
     /**
@@ -27,14 +28,26 @@ class SendEmail extends Mailable
      * @return $this
      */
     public function build()
-    {
-        return $this->from('2kiddoz@redmilkproject.com','2Kiddoz')
-        ->subject('Pemberitahuan')
-        ->view('view-email')
-        ->with(
-         [
-             'nama' => $this->data->fullName,
-             'email' => $this->data->email,
-         ]);
+    {   if($this->type != null){
+            return $this->from('2kiddoz@redmilkproject.com','2Kiddoz')
+            ->subject('Pemberitahuan Pemenang')
+            ->view('email-winner')
+            ->with(
+            [
+                'nama' => $this->data->full_name,
+                'email' => $this->data->email,
+                'bulan' => $this->data->bulan,
+                'tahun' => $this->data->tahun
+            ]);
+         }else{
+            return $this->from('2kiddoz@redmilkproject.com','2Kiddoz')
+            ->subject('Pemberitahuan')
+            ->view('view-email')
+            ->with(
+            [
+                'nama' => $this->data->fullName,
+                'email' => $this->data->email,
+            ]);
+         }
     }
 }

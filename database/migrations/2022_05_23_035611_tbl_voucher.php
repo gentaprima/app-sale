@@ -19,6 +19,7 @@ class TblVoucher extends Migration
             $table->integer('total_discount');
             $table->string('description');
             $table->integer('is_use');
+            $table->date('expired_in');
             $table->unsignedBigInteger('id_users')->unsigned();
             $table->foreign('id_users')->references('id')->on('tbl_users')->onDelete('cascade');
         });
