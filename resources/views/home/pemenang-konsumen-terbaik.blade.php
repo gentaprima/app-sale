@@ -26,10 +26,12 @@ use Illuminate\Support\Facades\Session;
     <div class="container">
         <div class="cart_inner mt-5">
             <?php if (Session::get('login') == true) { ?>
-                <?php if ($dataWinnerNow->id_users == Session::get('dataUsers')->id) { ?>
-                    <div class="alert alert-success">
-                        Selamat Anda Telah menjadi pemenang konsumen terbaik toko kami periode Bulan <b><?= date("F", mktime(0, 0, 0, $dataWinnerNow->bulan, 10)) ?> </b> Tahun <b>{{$dataWinnerNow->tahun}}</b>
-                    </div>
+                <?php if ($dataWinnerNow != null) { ?>
+                    <?php if ($dataWinnerNow->id_users == Session::get('dataUsers')->id) { ?>
+                        <div class="alert alert-success">
+                            Selamat Anda Telah menjadi pemenang konsumen terbaik toko kami periode Bulan <b><?= date("F", mktime(0, 0, 0, $dataWinnerNow->bulan, 10)) ?> </b> Tahun <b>{{$dataWinnerNow->tahun}}</b>
+                        </div>
+                    <?php } ?>
                 <?php } ?>
             <?php } ?>
             <div class="row">
@@ -52,7 +54,9 @@ use Illuminate\Support\Facades\Session;
                                     <td>{{$row->full_name}}</td>
                                     <td>{{$row->email}}</td>
                                     <td>
-                                        Bulan <b><?= date("F", mktime(0, 0, 0, $dataWinnerNow->bulan, 10)) ?> </b> Tahun <b>{{$dataWinnerNow->tahun}}</b>
+                                        <?php if ($row != null) { ?>
+                                            Bulan <b><?= date("F", mktime(0, 0, 0, $row->bulan, 10)) ?> </b> Tahun <b>{{$row->tahun}}</b>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -75,7 +79,11 @@ use Illuminate\Support\Facades\Session;
                                 @foreach($listReward as $row)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>Bulan <b><?= date("F", mktime(0, 0, 0, $dataWinnerNow->bulan, 10)) ?> </b> Tahun <b>{{$dataWinnerNow->tahun}}</b></td>
+                                    <td>
+                                        <?php if ($row != null) { ?>
+                                            Bulan <b><?= date("F", mktime(0, 0, 0, $row->bulan, 10)) ?> </b> Tahun <b>{{$row->tahun}}</b>
+                                        <?php } ?>
+                                    </td>
                                     <td>
                                         <ul>
                                             @php

@@ -1,6 +1,8 @@
 @extends('master_dashboard')
 
-@section('title','Laporan')
+@section('title')
+    Laporan Penjualan Member Bulan <?= $month ?>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <div class="page-header">

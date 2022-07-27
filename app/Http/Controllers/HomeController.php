@@ -78,6 +78,7 @@ class HomeController extends Controller
                                 ->leftJoin('tbl_users','tbl_pemenang.id_users','=','tbl_users.id')
                                 ->get();
 
+
         $data['listReward'] = DB::table('tbl_hadiah')->get();
         
 

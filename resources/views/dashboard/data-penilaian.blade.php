@@ -4,11 +4,11 @@
 @section('content')
 <div class="content-wrapper">
   <div class="page-header">
-    <h3 class="page-title">Data Alternatif Konsumen terbaik bulan ini</h3>
+    <h3 class="page-title">Data Alternatif Konsumen terbaik <b> bulan ini </b></h3>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data Alternatif Konsumen terbaik bulan ini</li>
+        <li class="breadcrumb-item active" aria-current="page">Data Alternatif Konsumen terbaik <b> bulan ini </b></li>
       </ol>
     </nav>
   </div>

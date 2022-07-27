@@ -42,7 +42,7 @@
                   <td>
                     <center>
                       <span data-toggle="modal" data-target="#modalBukti">
-                        <button id="btn_verif" onclick="showImage('{{$row->bukti_transaksi}}',`{{asset('uploads/transaction')}}`)" type="button" class="btn btn-inverse-info btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Bkuti Transaksi">
+                        <button id="btn_verif" onclick="showImage('{{$row->bukti_transaksi}}',`{{asset('uploads/transaction')}}`)" type="button" class="btn btn-inverse-info btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Bukti Transaksi">
                           <i class="mdi mdi-information"></i>
                         </button>
                       </span>
