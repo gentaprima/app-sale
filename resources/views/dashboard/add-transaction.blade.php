@@ -24,7 +24,7 @@
                             <div class="col-sm-5">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" onclick="checkMember(this)" id="radioNonMember" value="0">Non Member<i class="input-helper"></i></label>
+                                        <input type="radio" checked class="form-check-input" onclick="checkMember(this)" id="radioNonMember" value="0">Non Member<i class="input-helper"></i></label>
                                 </div>
                             </div>
                             <div class="col-sm-5">
