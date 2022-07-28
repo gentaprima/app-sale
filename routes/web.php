@@ -22,6 +22,7 @@ Route::post('/auth','LoginController@index');
 Route::get('/profile','HomeController@profile');
 Route::get('/keuntungan-menjadi-member','HomeController@keuntunganMenjadiMember');
 Route::get('/pemenang-konsumen-terbaik','HomeController@pemenangKonsumenTerbaik');
+Route::get('/show-kriteria/{id}','CriteriaController@showKriteria');
 // Product
 Route::get('/dashboard/data-produk','ProductController@index');
 Route::post('/add-product','ProductController@store');

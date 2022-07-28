@@ -36,10 +36,18 @@ use Illuminate\Support\Facades\Session;
 
                             <div class="col-lg-6 no-padding exclusive-right">
                                 <h3 class="text-center">Keuntungan Menjadi Member</h3>
-                                <ol class="mt-5" style="text-align: left;">
+                                <ol class="mt-3" style="text-align: left;">
                                     <li>Bisa mendapatkan lebih banyak potongan belanja</li>
                                     <li>Berpeluang untuk mendapatkan voucher-voucher menarik</li>
                                     <li>Berpeluang menjadi pemenang konsumen terbaik</li>
+                                </ol>
+
+                                <h3 class="mt-5">Kriteria Menjadi Pemenang</h3>
+                                <ol class="mt-3" style="text-align: left;">
+                                    <li>Belanja Minimal 5 kali dalam sebulan</li>
+                                    <li>Total Belanja minimal 500.000 dalam sebulan</li>
+                                    <li>Sering melakukan pembelanjaan ditoko</li>
+                                    <li>Memberikan ulasan dan rating terbaik</li>
                                 </ol>
                             </div>
 

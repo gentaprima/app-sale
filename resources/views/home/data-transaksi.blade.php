@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Session;
               <th scope="col">Tanggal</th>
               <th scope="col">Status</th>
               <th scope="col">Rating</th>
+              <th scope="col">Ulasan</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -54,14 +55,17 @@ use Illuminate\Support\Facades\Session;
               </td>
               <td>
                 @php if($row->status == 2){ @endphp
-                  @php if($row->rating == 0){ @endphp
-                  <button style="background: none;border:none;" onclick="addRating('{{$row->id_order}}')" data-toggle="modal" data-target="#modalRating"><b>Klik untuk kirim rating dan ulasan</b></button>
-                  @php }else{ @endphp
-                      @php for($i = 0; $i < $row->rating;$i++){ @endphp
-                      <span class="icon">★</span>
-                      @php } @endphp
+                @php if($row->rating == 0){ @endphp
+                <button style="background: none;border:none;" onclick="addRating('{{$row->id_order}}')" data-toggle="modal" data-target="#modalRating"><b>Klik untuk kirim rating dan ulasan</b></button>
+                @php }else{ @endphp
+                @php for($i = 0; $i < $row->rating;$i++){ @endphp
+                  <span class="icon">★</span>
                   @php } @endphp
-                @php } @endphp
+                  @php } @endphp
+                  @php } @endphp
+              </td>
+              <td>
+                <span>{{$row->ulasan}}</span>
               </td>
               <td>
                 @php if($row->status == 1){ @endphp

@@ -45,6 +45,7 @@ use Illuminate\Support\Facades\Session;
                                     <th scope="col">Nama</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Periode</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +58,13 @@ use Illuminate\Support\Facades\Session;
                                         <?php if ($row != null) { ?>
                                             Bulan <b><?= date("F", mktime(0, 0, 0, $row->bulan, 10)) ?> </b> Tahun <b>{{$row->tahun}}</b>
                                         <?php } ?>
+                                    </td>
+                                    <td>
+                                        <span data-toggle="modal" data-target="#modalDetail">
+                                            <button id="btn_verif" onclick="showKriteria('{{$row->id_users}}')" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Kriteria Pemenang">
+                                                <i class="fa fa-table"></i>
+                                            </button>
+                                        </span>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -102,5 +110,71 @@ use Illuminate\Support\Facades\Session;
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Detail Kriteria Pemenang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>  
+            <div class="modal-body">
+                <div class="row mt-3">
+                    <div class="col-sm-4">
+                        <p>Total Belanja</p>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font-weight-bold" id="totalBelanja"></p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-4">
+                        <p>Volume Belanja</p>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font-weight-bold" id="volumeBelanja"></p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-4">
+                        <p>Ekspedisi</p>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font-weight-bold" id="ekspedisi"></p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-4">
+                        <p>Rating</p>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font-weight-bold" id="rating"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showKriteria(id){
+        $.ajax({
+            url:`/show-kriteria/${id}`,
+            type:'GET',
+            dataType:'json',
+            success : function(response){
+                document.getElementById("volumeBelanja").innerHTML =  response.volume_belanja
+                document.getElementById("totalBelanja").innerHTML =  response.total_belanja
+                document.getElementById("rating").innerHTML =  response.rating
+                document.getElementById("ekspedisi").innerHTML =  response.ekspedisi
+            }
+        })
+    }
+</script>
 
 @endsection

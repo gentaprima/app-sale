@@ -25,6 +25,7 @@ class VoucherController extends Controller
         $data = ModelVoucher::where('id_users',$id)
                             ->where('is_use',0)
                             ->whereDate('expired_in','>=', date('Y-m-d'))
+                            ->orderBy('id','desc')
                             ->get();
         return response()->json([
             'success' => true,

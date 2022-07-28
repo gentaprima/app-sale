@@ -4,11 +4,11 @@
 @section('content')
 <div class="content-wrapper">
     <div class="page-header">
-        <h3 class="page-title">Laporan Bulan</h3>
+        <h3 class="page-title">Laporan Pemenang Konsumen Terbaik</h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Laporan</li>
+                <li class="breadcrumb-item active" aria-current="page">Laporan Pemenang Konsumen Terbaik</li>
             </ol>
         </nav>
     </div>
@@ -38,7 +38,13 @@
                                     <th> # </th>
                                     <th> Email </th>
                                     <th> Nama Konsumen </th>
+                                    <th> No Telepon </th>
+                                    <th> Alamat </th>
+                                    <th> Kecamatan </th>
+                                    <th> Kabupaten </th>
+                                    <th> Provinsi </th>
                                     <th> Periode </th>
+                                    <th> Hadiah </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,7 +53,13 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$row->email}}</td>
                                     <td>{{$row->full_name}}</td>
+                                    <td>{{$row->phone_number}}</td>
+                                    <td>{{$row->alamat}}</td>
+                                    <td>{{$row->kecamatan}}</td>
+                                    <td>{{$row->kabupaten}}</td>
+                                    <td>{{$row->provinsi}}</td>
                                     <td>Bulan <b><?= date("F", mktime(0, 0, 0, $row->bulan, 10)) ?> </b> tahun <b>{{$row->tahun}}</td>
+                                    <td>{{$row->hadiah}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

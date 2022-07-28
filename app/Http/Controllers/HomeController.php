@@ -49,6 +49,7 @@ class HomeController extends Controller
     {
         $dataVoucher = ModelVoucher::where('id_users','=',Session::get('dataUsers')->id)
                                     ->where('is_use','=',0)
+                                    ->orderBy('id','desc')
                                     ->get();
                                        
 

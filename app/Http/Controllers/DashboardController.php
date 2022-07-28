@@ -50,36 +50,79 @@ class DashboardController extends Controller
         return view('dashboard/add-transaction', $data);
     }
 
-    public function dataTransactionNonMember()
+    public function dataTransactionNonMember(Request $request)
     {
-        $dataTransaction = DB::table('tbl_transaction_non_member')
-            // ->selectRaw('count(*),id_order,full_name')
-            ->select('tbl_transaction_non_member.id_order', 'tbl_transaction_non_member.full_name', 'tbl_transaction_non_member.subtotal', 'date', 'tbl_transaction_non_member.bukti_transaksi')
-            ->leftJoin('tbl_product', 'tbl_transaction_non_member.id_product', '=', 'tbl_product.id')
-            ->leftJoin('tbl_expedition', 'tbl_transaction_non_member.id_expedition', '=', 'tbl_expedition.id')
-            ->groupBy('id_order', 'full_name', 'subtotal', 'date')
-            ->orderBy('tbl_transaction_non_member.id', 'desc')
-            ->get();
+        $month = date('m');
+
+        if ($request->month != null) {
+            $splitMonth = explode('-', $request->month);
+            $month = $splitMonth[1];
+            $dataTransaction = DB::table('tbl_transaction_non_member')
+                // ->selectRaw('count(*),id_order,full_name')
+                ->select('tbl_transaction_non_member.id_order', 'tbl_transaction_non_member.full_name', 'tbl_transaction_non_member.subtotal', 'date', 'tbl_transaction_non_member.bukti_transaksi')
+                ->leftJoin('tbl_product', 'tbl_transaction_non_member.id_product', '=', 'tbl_product.id')
+                ->leftJoin('tbl_expedition', 'tbl_transaction_non_member.id_expedition', '=', 'tbl_expedition.id')
+                ->whereMonth('date', $splitMonth[1])
+                ->groupBy('id_order', 'full_name', 'subtotal', 'date')
+                ->orderBy('tbl_transaction_non_member.id', 'desc')
+                ->get();
+        } else {
+            $dataTransaction = DB::table('tbl_transaction_non_member')
+                // ->selectRaw('count(*),id_order,full_name')
+                ->select('tbl_transaction_non_member.id_order', 'tbl_transaction_non_member.full_name', 'tbl_transaction_non_member.subtotal', 'date', 'tbl_transaction_non_member.bukti_transaksi')
+                ->leftJoin('tbl_product', 'tbl_transaction_non_member.id_product', '=', 'tbl_product.id')
+                ->leftJoin('tbl_expedition', 'tbl_transaction_non_member.id_expedition', '=', 'tbl_expedition.id')
+                ->whereMonth('date', date('m'))
+                ->groupBy('id_order', 'full_name', 'subtotal', 'date')
+                ->orderBy('tbl_transaction_non_member.id', 'desc')
+                ->get();
+        }
+
+
+
 
         $data = [
-            'dataTransaction' => $dataTransaction
+            'dataTransaction' => $dataTransaction,
+            'filterMonth' => $request->month,
+            'month' => date("F", mktime(0, 0, 0, $month, 10))
         ];
         return view('dashboard/data-transaction-non-member', $data);
     }
-    public function dataTransactionMember()
+    public function dataTransactionMember(Request $request)
     {
-        $dataTransaction = DB::table('tbl_transaction_member')
-            // ->selectRaw('count(*),id_order,full_name')
-            ->select('tbl_transaction_member.id_order', 'tbl_users.full_name', 'tbl_transaction_member.subtotal', 'date', 'tbl_transaction_member.status', 'tbl_transaction_member.bukti_transaksi')
-            ->leftJoin('tbl_users', 'tbl_transaction_member.id_users', '=', 'tbl_users.id')
-            ->leftJoin('tbl_product', 'tbl_transaction_member.id_product', '=', 'tbl_product.id')
-            ->leftJoin('tbl_expedition', 'tbl_transaction_member.id_expedition', '=', 'tbl_expedition.id')
-            ->groupBy('id_order', 'full_name', 'subtotal', 'date')
-            ->orderBy('tbl_transaction_member.id', 'desc')
-            ->get();
+        $month = date('m');
+
+        if ($request->month != null) {
+            $splitMonth = explode('-', $request->month);
+            $month = $splitMonth[1];
+            $dataTransaction = DB::table('tbl_transaction_member')
+                ->join('tbl_product', 'tbl_transaction_member.id_product', '=', 'tbl_product.id')
+                ->leftJoin('tbl_users', 'tbl_transaction_member.id_users', '=', 'tbl_users.id')
+                ->leftJoin('tbl_subkriteria', 'tbl_transaction_member.id_expedition', '=', 'tbl_subkriteria.id')
+                ->select('tbl_transaction_member.*', DB::raw('GROUP_CONCAT(tbl_product.product_name) as product_name'), 'full_name', 'tbl_subkriteria.description as expedition', 'tbl_transaction_member.date', DB::raw('GROUP_CONCAT(tbl_transaction_member.qty) as qty'), 'subtotal')
+                ->whereMonth('date', $splitMonth[1])
+                ->orderBy('tbl_transaction_member.id', 'desc')
+                ->groupBy('tbl_transaction_member.id_order')
+                ->get();
+        } else {
+            $dataTransaction = DB::table('tbl_transaction_member')
+                // ->selectRaw('count(*),id_order,full_name')
+                ->select('tbl_transaction_member.id_order', 'tbl_users.full_name', 'tbl_transaction_member.subtotal', 'date', 'tbl_transaction_member.status', 'tbl_transaction_member.bukti_transaksi')
+                ->leftJoin('tbl_users', 'tbl_transaction_member.id_users', '=', 'tbl_users.id')
+                ->leftJoin('tbl_product', 'tbl_transaction_member.id_product', '=', 'tbl_product.id')
+                ->leftJoin('tbl_expedition', 'tbl_transaction_member.id_expedition', '=', 'tbl_expedition.id')
+                ->whereMonth('date', date('m'))
+                ->groupBy('id_order', 'full_name', 'subtotal', 'date')
+                ->orderBy('tbl_transaction_member.id', 'desc')
+                ->get();
+        }
+
+
 
         $data = [
-            'dataTransaction' => $dataTransaction
+            'dataTransaction' => $dataTransaction,
+            'filterMonth' => $request->month,
+            'month' => date("F", mktime(0, 0, 0, $month, 10))
         ];
         return view('dashboard/data-transaction-member', $data);
     }
@@ -231,11 +274,14 @@ class DashboardController extends Controller
         return view('dashboard/report-non-member', $data);
     }
 
-    public function reportKonsumen(){
+    public function reportKonsumen()
+    {
+        
         $data['dataWinner'] = DB::table('tbl_pemenang')
-                            ->leftJoin('tbl_users','tbl_pemenang.id_users','=','tbl_users.id')
-                            ->get();
-        return view('dashboard/report-konsumen',$data);
+            ->leftJoin('tbl_users', 'tbl_pemenang.id_users', '=', 'tbl_users.id')
+            ->leftJoin('tbl_hadiah','tbl_pemenang.bulan','=','tbl_hadiah.bulan')
+            ->get();
+        return view('dashboard/report-konsumen', $data);
     }
 
     public function getReward()
@@ -247,11 +293,12 @@ class DashboardController extends Controller
         return view('dashboard/data-reward', $data);
     }
 
-    public function getPelayan(){
-        $dataCustomers =  ModelUsers::where('role',2)->get();
+    public function getPelayan()
+    {
+        $dataCustomers =  ModelUsers::where('role', 2)->get();
         $data = [
             'dataPelayan' => $dataCustomers
         ];
-        return view('dashboard/data-pelayan',$data);
+        return view('dashboard/data-pelayan', $data);
     }
 }

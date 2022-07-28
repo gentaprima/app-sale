@@ -162,7 +162,7 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-2">Bukti Transaksi</label>
                             <div class="col-sm-10">
-                                <input type="file" name="image" class="file-upload-default">
+                                <input type="file" required name="image" class="file-upload-default">
                                 <div class="input-group col-xs-12">
                                     <input type="text" id="imageText" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                     <span class="input-group-append">
@@ -443,7 +443,7 @@
             url: `/dashboard/get-voucher/${id}`,
             success: function(response) {
                 $.each(response.data, function(key, value) {
-                    $("#listVoucher").append('<option value=' + value.code_voucher + '>' + value.code_voucher + ' - ' + value.description + '</option>');
+                    $("#listVoucher").append('<option value=' + value.code_voucher + '>' + value.code_voucher + ' - ' + value.description + ' - Berlaku sampai ' + value.expired_in + '</option>');
                 })
             }
         })

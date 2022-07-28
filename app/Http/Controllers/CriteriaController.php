@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ModelKriteria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class CriteriaController extends Controller
@@ -44,5 +45,19 @@ class CriteriaController extends Controller
         Session::flash('title', 'Success !'); 
         return redirect()->back()
                         ->withInput();
+    }
+
+    public function showKriteria($id){
+         $dataNilaiAlternatif = DB::table('tbl_nilai_alternatif')
+                                ->select('tbl_nilai_alternatif.id','SB1.description AS volume_belanja','SB2.description AS total_belanja','SB3.description AS ekspedisi','SB4.description AS rating')
+                                ->leftJoin('tbl_users','tbl_nilai_alternatif.id_users','=','tbl_users.id')
+                                ->leftJoin('tbl_subkriteria AS SB1','tbl_nilai_alternatif.volume_belanja','=','SB1.id')
+                                ->leftJoin('tbl_subkriteria AS SB2','tbl_nilai_alternatif.total_belanja','=','SB2.id')
+                                ->leftJoin('tbl_subkriteria AS SB3','tbl_nilai_alternatif.ekspedisi','=','SB3.id')
+                                ->leftJoin('tbl_subkriteria AS SB4','tbl_nilai_alternatif.rating','=','SB4.id')
+                                ->where('tbl_nilai_alternatif.id_users',$id)
+                                ->first();
+
+        return response()->json($dataNilaiAlternatif);
     }
 }
