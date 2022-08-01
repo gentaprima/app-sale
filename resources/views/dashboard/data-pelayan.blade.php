@@ -39,12 +39,12 @@
                   <td>
                     <center>
                       <span data-toggle="modal" data-target="#modalDetail">
-                        <button id="btn_verif" onclick="detailCustomers('{{$row->id}}','{{$row->id_member}}','{{$row->full_name}}','{{$row->email}}','{{$row->phone_number}}','{{$row->alamat}}','{{$row->kecamatan}}','{{$row->kabupaten}}','{{$row->provinsi}}','{{$row->photo}}',`{{asset('uploads/profile')}}`)" type="button" class="btn btn-inverse-primary btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Detail Konsumen">
+                        <button id="btn_verif" onclick="detailCustomers('{{$row->id}}','{{$row->id_member}}','{{$row->full_name}}','{{$row->email}}','{{$row->phone_number}}','{{$row->alamat}}','{{$row->kecamatan}}','{{$row->kabupaten}}','{{$row->provinsi}}','{{$row->photo}}',`{{asset('uploads/profile')}}`)" type="button" class="btn btn-inverse-primary btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Detail Pelayan">
                           <i class="mdi mdi-account-card-details"></i>
                         </button>
                       </span>
                       <span data-toggle="modal" data-target="#modalForm">
-                        <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->id_member}}','{{$row->full_name}}','{{$row->email}}','{{$row->phone_number}}','{{$row->alamat}}','{{$row->kecamatan}}','{{$row->kabupaten}}','{{$row->provinsi}}','{{$row->photo}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Konsumen">
+                        <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->id_member}}','{{$row->full_name}}','{{$row->email}}','{{$row->phone_number}}','{{$row->alamat}}','{{$row->kecamatan}}','{{$row->kabupaten}}','{{$row->provinsi}}','{{$row->photo}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Pelayan">
                           <i class="mdi mdi-pencil-box-outline"></i>
                         </button>
                       </span>

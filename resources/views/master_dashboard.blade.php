@@ -164,9 +164,9 @@
             <span class="menu-title">Laporan</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse {{ Request::is('dashboard/data-report-member') || Request::is('dashboard/data-report-non-member')  || Request::is('dashboard/report-konsumen-terbaik')? 'show' : '' }}" id="ui-report">
+          <div class="collapse {{ Request::is('dashboard/report-member') || Request::is('dashboard/report-non-member')  || Request::is('dashboard/report-konsumen-terbaik')? 'show' : '' }}" id="ui-report">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/data-report-member') ? 'active' : '' }}" href="/dashboard/report-member"> Laporan (member)</a></li>
+              <li class="nav-item"> <a class="nav-link {{ Request::is('dashboard/report-member') ? 'active' : '' }}" href="/dashboard/report-member"> Laporan (member)</a></li>
               <li class=" nav-item"> <a class="nav-link {{ Request::is('dashboard/report-non-member') ? 'active' : '' }}" href="/dashboard/report-non-member">Laporan (non member)</a></li>
               <li class=" nav-item"> <a class="nav-link {{ Request::is('dashboard/report-konsumen-terbaik') ? 'active' : '' }}" href="/dashboard/report-konsumen-terbaik">Laporan Konsumen Terbaik</a></li>
             </ul>

@@ -47,7 +47,7 @@
                                     <td>
                                         <center>
                                             <span data-toggle="modal" data-target="#modalForm">
-                                                <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->bulan}}','{{$row->tahun}}','{{$row->hadiah}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Kriteria">
+                                                <button id="btn_verif" onclick="updateData('{{$row->id}}','{{$row->bulan}}','{{$row->tahun}}','{{$row->hadiah}}')" type="button" class="btn btn-inverse-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="top" title="Ubah Data Hadiah">
                                                     <i class="mdi mdi-pencil-box-outline"></i>
                                                 </button>
                                             </span>
