@@ -190,9 +190,10 @@ use Illuminate\Support\Facades\Session;
             wa = $("#wa").val();
             alamat = $("#alamat").val();
             email = $("#email").val();
+            quantity = $("#quantity").val();
             uk = $("input[name='uk']:checked").val();
             message = "Nama Penerima : " + namaPenerima + "\n No Wa. : " + wa + "\n Email : " + email +
-                "\n Alamat : " + alamat + "\n Ukuran : " + uk
+                "\n Alamat : " + alamat+"\n Jumlah Pesanan : "+quantity + "\n Ukuran : " + uk
             window.location.href = "https://api.whatsapp.com/send?phone=6281220679409&text=" + message
 
         })

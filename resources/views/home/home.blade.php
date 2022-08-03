@@ -183,7 +183,7 @@
         <div class="modal-dialog modal-xl" style="width: 800px;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Tambah Produk</h5>
+                    <h5 class="modal-title" id="modalTitle">Pesan Produk</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -204,6 +204,10 @@
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">Alamat</label>
                         <textarea type="text" class="form-control" id="alamat" name="alamat"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-form-label">Jumlah Pesanan</label>
+                        <textarea type="text" class="form-control" id="quantity" name="quantity"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword" class="col-form-label">Ukuran</label>
