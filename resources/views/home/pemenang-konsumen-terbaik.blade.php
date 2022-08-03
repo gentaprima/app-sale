@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Session;
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">Wilayah</th>
                                     <th scope="col">Periode</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
@@ -53,7 +53,7 @@ use Illuminate\Support\Facades\Session;
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$row->full_name}}</td>
-                                    <td>{{$row->email}}</td>
+                                    <td>{{$row->kabupaten}}, {{$row->provinsi}} </td>
                                     <td>
                                         <?php if ($row != null) { ?>
                                             Bulan <b><?= date("F", mktime(0, 0, 0, $row->bulan, 10)) ?> </b> Tahun <b>{{$row->tahun}}</b>
