@@ -49,8 +49,8 @@ use Illuminate\Support\Facades\Session;
             <nav class="navbar navbar-expand-lg navbar-light main_box">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="/"><img src="{{ asset('home/img/logo.png') }}" height="50px"
-                            alt=""></a>
+                    <a class="navbar-brand logo_h" href="/"><img src="{{ asset('home/img/logo.png') }}"
+                            height="50px" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -63,15 +63,17 @@ use Illuminate\Support\Facades\Session;
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item {{ Request::is('/') ? 'active' : '' }}"><a class="nav-link"
                                     href="/">Beranda</a></li>
-                            <li class="nav-item {{ Request::is('/keuntungan-menjadi-member') ? 'active' : '' }}"><a class="nav-link"
-                                    href="/keuntungan-menjadi-member">Keuntungan Menjadi Member</a></li>
-                            <li class="nav-item {{ Request::is('/pemenang-konsumen-terbaik') ? 'active' : '' }}"><a class="nav-link"
-                                    href="/pemenang-konsumen-terbaik">Pemenang Konsumen Terbaik</a></li>
+                            <li class="nav-item {{ Request::is('/keuntungan-menjadi-member') ? 'active' : '' }}"><a
+                                    class="nav-link" href="/keuntungan-menjadi-member">Keuntungan Menjadi Member</a>
+                            </li>
+                            <li class="nav-item {{ Request::is('/pemenang-konsumen-terbaik') ? 'active' : '' }}"><a
+                                    class="nav-link" href="/pemenang-konsumen-terbaik">Pemenang Konsumen Terbaik</a>
+                            </li>
                             <?php if (Session::get('login') == true) {  ?>
                             <li class="nav-item {{ Request::is('data-transaksi') ? 'active' : '' }}"><a
                                     class="nav-link" href="/data-transaksi">Riwayat Transaksi</a></li>
-                            <li class="nav-item {{ Request::is('data-voucher') ? 'active' : '' }}"><a
-                                    class="nav-link" href="/data-voucher">Voucher</a></li>
+                            <li class="nav-item {{ Request::is('data-voucher') ? 'active' : '' }}"><a class="nav-link"
+                                    href="/data-voucher">Voucher</a></li>
                             <li class="nav-item submenu dropdown {{ Request::is('profile') ? 'active' : '' }}">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                     aria-haspopup="true"
@@ -127,7 +129,7 @@ use Illuminate\Support\Facades\Session;
                     <div class="single-footer-widget mail-chimp">
                         <h6 class="mb-20">Instragram Feed</h6>
                         <ul class="instafeed d-flex flex-wrap">
-                         
+
                         </ul>
                     </div>
                 </div>
@@ -181,6 +183,19 @@ use Illuminate\Support\Facades\Session;
         $(document).ready(function() {
             $(".owl-carousel").owlCarousel();
         });
+    </script>
+    <script>
+        $("#send-message").click(function() {
+            namaPenerima = $('#penerima').val();
+            wa = $("#wa").val();
+            alamat = $("#alamat").val();
+            email = $("#email").val();
+            uk = $("input[name='uk']:checked").val();
+            message = "Nama Penerima : " + namaPenerima + "\n No Wa. : " + wa + "\n Email : " + email +
+                "\n Alamat : " + alamat + "\n Ukuran : " + uk
+            window.location.href = "https://api.whatsapp.com/send?phone=6281220679409&text=" + message
+
+        })
     </script>
     <script>
         let icon = document.getElementById('icon');
