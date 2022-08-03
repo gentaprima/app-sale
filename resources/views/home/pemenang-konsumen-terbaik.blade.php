@@ -53,7 +53,7 @@ use Illuminate\Support\Facades\Session;
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$row->full_name}}</td>
-                                    <td>{{$row->kabupaten}}, {{$row->provinsi}}</td>
+                                    <td>{{$row->kabupaten}}, {{$row->provinsi}} </td>
                                     <td>
                                         <?php if ($row != null) { ?>
                                             Bulan <b><?= date("F", mktime(0, 0, 0, $row->bulan, 10)) ?> </b> Tahun <b>{{$row->tahun}}</b>
