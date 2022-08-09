@@ -208,17 +208,13 @@ class DashboardController extends Controller
     public function report(Request $request)
     {
         $month = date('m');
+        if (!isset($request->startDate)) {
 
-
-        if ($request->month != null) {
-            $splitMonth = explode('-', $request->month);
-            $month = $splitMonth[1];
             $dataTransaction = DB::table('tbl_transaction_member')
                 ->join('tbl_product', 'tbl_transaction_member.id_product', '=', 'tbl_product.id')
                 ->leftJoin('tbl_users', 'tbl_transaction_member.id_users', '=', 'tbl_users.id')
                 ->leftJoin('tbl_subkriteria', 'tbl_transaction_member.id_expedition', '=', 'tbl_subkriteria.id')
                 ->select('tbl_transaction_member.*', DB::raw('GROUP_CONCAT(tbl_product.product_name) as product_name'), 'full_name', 'tbl_subkriteria.description as expedition', 'tbl_transaction_member.date', DB::raw('GROUP_CONCAT(tbl_transaction_member.qty) as qty'), 'subtotal')
-                ->whereMonth('date', $splitMonth[1])
                 ->orderBy('tbl_transaction_member.id', 'desc')
                 ->groupBy('tbl_transaction_member.id_order')
                 ->get();
@@ -228,9 +224,8 @@ class DashboardController extends Controller
                 ->leftJoin('tbl_users', 'tbl_transaction_member.id_users', '=', 'tbl_users.id')
                 ->leftJoin('tbl_subkriteria', 'tbl_transaction_member.id_expedition', '=', 'tbl_subkriteria.id')
                 ->select('tbl_transaction_member.*', DB::raw('GROUP_CONCAT(tbl_product.product_name) as product_name'), 'full_name', 'tbl_subkriteria.description as expedition', 'tbl_transaction_member.date', DB::raw('GROUP_CONCAT(tbl_transaction_member.qty) as qty'), 'subtotal')
-                ->whereDay("date", $request->day)
-                ->whereMonth('date', $request->month)
-                ->whereYear('date', $request->year)
+                // ->where([['date', '<=', $request->startDate], ['date', '>=', $request->endDate]])
+                ->orwhereBetween('date', array($request->startDate, $request->endDate))
                 ->orderBy('tbl_transaction_member.id', 'desc')
                 ->groupBy('tbl_transaction_member.id_order')
                 ->get();
@@ -245,7 +240,7 @@ class DashboardController extends Controller
     public function reportNonMember(Request $request)
     {
         $month = date('m');
-        if ($request->month != null) {
+        if (!isset($request->startDate)) {
             $dataTransaction = DB::table('tbl_transaction_non_member')
                 ->join('tbl_product', 'tbl_transaction_non_member.id_product', '=', 'tbl_product.id')
                 ->leftJoin('tbl_subkriteria', 'tbl_transaction_non_member.id_expedition', '=', 'tbl_subkriteria.id')
@@ -259,9 +254,8 @@ class DashboardController extends Controller
                 ->join('tbl_product', 'tbl_transaction_non_member.id_product', '=', 'tbl_product.id')
                 ->leftJoin('tbl_subkriteria', 'tbl_transaction_non_member.id_expedition', '=', 'tbl_subkriteria.id')
                 ->select('tbl_transaction_non_member.*', DB::raw('GROUP_CONCAT(tbl_product.product_name) as product_name'), 'full_name', 'tbl_subkriteria.description as expedition', 'tbl_transaction_non_member.date', DB::raw('GROUP_CONCAT(tbl_transaction_non_member.qty) as qty'), 'subtotal')
-                ->whereDay("date", $request->day)
-                ->whereMonth('date', $request->month)
-                ->whereYear('date', $request->year)
+                // ->where([['date', '<=', $request->startDate], ['date', '>=', $request->endDate]])
+                ->orwhereBetween('date', array($request->startDate, $request->endDate))
                 ->orderBy('tbl_transaction_non_member.id', 'desc')
                 ->groupBy('tbl_transaction_non_member.id_order')
                 ->get();
