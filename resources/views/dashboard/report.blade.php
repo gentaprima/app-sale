@@ -96,12 +96,19 @@
             <div class="modal-body">
                 <form class="form" method="get" id="form" method="get">
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Pilih Bulan</label>
-                        <div class="col-sm-10">
-                            <input type="month" class="form-control" id="date" name="month">
+                        <div class="col-sm-3">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal</label>
+                            <input type="number" class="form-control" id="day" name="day">
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Bulan</label>
+                            <input type="number" class="form-control" id="month" name="month">
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Tahun</label>
+                            <input type="number" class="form-control" id="year" value="{{Date('Y')}}" name="year">
                         </div>
                     </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

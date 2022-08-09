@@ -228,7 +228,9 @@ class DashboardController extends Controller
                 ->leftJoin('tbl_users', 'tbl_transaction_member.id_users', '=', 'tbl_users.id')
                 ->leftJoin('tbl_subkriteria', 'tbl_transaction_member.id_expedition', '=', 'tbl_subkriteria.id')
                 ->select('tbl_transaction_member.*', DB::raw('GROUP_CONCAT(tbl_product.product_name) as product_name'), 'full_name', 'tbl_subkriteria.description as expedition', 'tbl_transaction_member.date', DB::raw('GROUP_CONCAT(tbl_transaction_member.qty) as qty'), 'subtotal')
-                ->whereMonth('date', date('m'))
+                ->whereDay("date", $request->day)
+                ->whereMonth('date', $request->month)
+                ->whereYear('date', $request->year)
                 ->orderBy('tbl_transaction_member.id', 'desc')
                 ->groupBy('tbl_transaction_member.id_order')
                 ->get();
@@ -243,10 +245,7 @@ class DashboardController extends Controller
     public function reportNonMember(Request $request)
     {
         $month = date('m');
-
         if ($request->month != null) {
-            $splitMonth = explode('-', $request->month);
-            $month = $splitMonth[1];
             $dataTransaction = DB::table('tbl_transaction_non_member')
                 ->join('tbl_product', 'tbl_transaction_non_member.id_product', '=', 'tbl_product.id')
                 ->leftJoin('tbl_subkriteria', 'tbl_transaction_non_member.id_expedition', '=', 'tbl_subkriteria.id')
@@ -260,7 +259,9 @@ class DashboardController extends Controller
                 ->join('tbl_product', 'tbl_transaction_non_member.id_product', '=', 'tbl_product.id')
                 ->leftJoin('tbl_subkriteria', 'tbl_transaction_non_member.id_expedition', '=', 'tbl_subkriteria.id')
                 ->select('tbl_transaction_non_member.*', DB::raw('GROUP_CONCAT(tbl_product.product_name) as product_name'), 'full_name', 'tbl_subkriteria.description as expedition', 'tbl_transaction_non_member.date', DB::raw('GROUP_CONCAT(tbl_transaction_non_member.qty) as qty'), 'subtotal')
-                ->whereMonth('date', $month)
+                ->whereDay("date", $request->day)
+                ->whereMonth('date', $request->month)
+                ->whereYear('date', $request->year)
                 ->orderBy('tbl_transaction_non_member.id', 'desc')
                 ->groupBy('tbl_transaction_non_member.id_order')
                 ->get();
@@ -276,10 +277,10 @@ class DashboardController extends Controller
 
     public function reportKonsumen()
     {
-        
+
         $data['dataWinner'] = DB::table('tbl_pemenang')
             ->leftJoin('tbl_users', 'tbl_pemenang.id_users', '=', 'tbl_users.id')
-            ->leftJoin('tbl_hadiah','tbl_pemenang.bulan','=','tbl_hadiah.bulan')
+            ->leftJoin('tbl_hadiah', 'tbl_pemenang.bulan', '=', 'tbl_hadiah.bulan')
             ->get();
         return view('dashboard/report-konsumen', $data);
     }
